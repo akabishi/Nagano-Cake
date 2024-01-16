@@ -1,11 +1,11 @@
 class CreateItems < ActiveRecord::Migration[6.1]
   def change
     create_table :items do |t|
-      t.references :genre_id, foreign_key: true
+      t.references :genre, foreign_key: true, null: false
       t.string :name
       t.text :introduction
       t.integer :price
-      t.booleran :is_active, default: true
+      t.boolean :is_active, default: true
 
       t.timestamps
     end
