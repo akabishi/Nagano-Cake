@@ -1,19 +1,18 @@
 Rails.application.routes.draw do
 
   # 顧客用
-  # URL /customers/sign_in ...
+   #URL /customers/sign_in ...
   devise_for :customers,skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
 
   # 管理者用
-  # URL /admin/sign_in ...
+   #URL /admin/sign_in ...
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     sessions: "admin/sessions"
   }
 
-  devise_for :users
 
   # 会員側のルーティング設定
   scope module: :public do
@@ -23,7 +22,7 @@ Rails.application.routes.draw do
     # アバウトページ
     get "home/about"=>"homes#about"
     # 商品
-  　resources :items, only: [:index, :show]
+   resources :items, only: [:index, :show]
     # 顧客
     resources :customers, only: [:new, :index, :create, :show] do
       get 'my_page' => 'customers#show'
