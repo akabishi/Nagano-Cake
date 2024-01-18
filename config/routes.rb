@@ -9,9 +9,10 @@ Rails.application.routes.draw do
 
   # 管理者用
    #URL /admin/sign_in ...
-  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
-    sessions: "admin/sessions"
-  }
+  # config/routes.rb
+devise_for :admin, skip: [:registrations, :passwords], controllers: {
+  sessions: 'admin/sessions'
+}
 
 
   # 会員側のルーティング設定
@@ -48,7 +49,7 @@ Rails.application.routes.draw do
   # 管理者側のルーティング設定
   namespace :admin do
     # トップページ(商品一覧画面)
-    root :to =>"homes#top"
+    root to: "homes#top"
     # 商品
     resources :items, only: [:new, :index, :create, :show, :edit, :update]
     # ジャンル
