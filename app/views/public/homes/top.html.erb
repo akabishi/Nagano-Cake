@@ -1,1 +1,20 @@
-<h1>NaganoCake</h1>
+<div class= "container">
+  <div class= "row">
+    <div class= "mx-auto col-11">
+      <h1>ようこそ、<strong>NaganoCake</strong>へ!!</h1>
+      <p>
+      このサイトは、ケーキ販売のECサイトになります。<br>
+      会員でない方も商品の閲覧はできますが、<br>
+      購入には館員登録が必要になります。
+      </p>
+    </div>
+    <!--画像に変更する（横並び）-->
+      <h4>新着商品</h4>
+      <% @items.each do |item| %>
+        <%= link_to item_path(item) do %>
+          <%= item.name %>
+        <% end %>
+      <% end %>
+      <%= link_to "全ての商品を見る>>", items_path, class: "col text-right" %>
+  </div>
+</div>
