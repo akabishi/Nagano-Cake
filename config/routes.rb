@@ -47,6 +47,8 @@ Rails.application.routes.draw do
 
   # 管理者側のルーティング設定
   namespace :admin do
+    # トップページ(商品一覧画面)
+    root :to =>"homes#top"
     # 商品
     resources :items, only: [:new, :index, :create, :show, :edit, :update]
     # ジャンル
@@ -56,7 +58,8 @@ Rails.application.routes.draw do
     # 注文詳細画面(ステータス編集を兼ねる)/注文ステータスの更新
     resources :orders, only: [:show, :update] do
       # 製作ステータスの更新
-      resources :order_details, only: [:update]
+    resources :order_details, only: [:update]
+    
     end
 
   end
