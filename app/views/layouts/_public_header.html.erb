@@ -2,6 +2,9 @@
   <nav class= "navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
       <a class= "navbar-brand" href="/"><span>NaganoCake</span></a>
+      <% if customer_signed_in? %>
+        <p class = "text-white">ようこそ<%= current_customer.first_name_kana %>さん！</p>
+      <% end %>
       <button class= "navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class= "navbar-toggler-icon"></span>
       </button>
@@ -9,7 +12,7 @@
       <ul class= "navbar-nav ml-auto">
         <% if customer_signed_in? %>
           <li>
-            <%= link_to current_user_path, class: 'nav-link text-light' do%>
+            <%= link_to customer_path(current_customer), class: 'nav-link text-light' do%>
               Mypage
             <% end %>
           </li>
