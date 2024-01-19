@@ -1,0 +1,73 @@
+<div class= "container">
+  <h2>会員情報編集</h2>
+
+  <%= form_with model: @customer,local:true do |f| %>
+    <div class="row">
+      <p>氏名</p>
+      <div class="col-2">
+        <div class="form-group">
+          <%= f.text_field :first_name, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col-2">
+        <div class="form-group">
+          <%= f.text_field :last_name, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <p>フリガナ</p>
+      <div class="col-2">
+        <div class="form-group">
+          <%= f.text_field :first_name_kana, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col-2">
+        <div class="form-group">
+          <%= f.text_field :last_name_kana, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <p>郵便番号</p>
+      <div class="col-2">
+        <div class="form-group">
+          <%= f.text_field :postal_code, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <p>住所</p>
+      <div class="col-2">
+        <div class="form-group">
+          <%= f.text_field :address, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <p>電話番号</p>
+      <div class="col-2">
+        <div class="form-group">
+          <%= f.text_field :phone_number, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <p>メールアドレス</p>
+      <div class="col-2">
+        <div class="form-group">
+          <%= f.text_field :email, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+
+    <%= f.submit "編集内容を保存" ,class: 'btn btn-success' %>
+    <%= link_to "退会する", customer_unsubscribe_path, class: "btn btn-danger" %>
+
+  <% end %>
+</div>
