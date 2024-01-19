@@ -31,9 +31,9 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
     get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
     patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw'
     # カート内
-    resources :cart_items, only: [:index, :create, :update, :destroy] do
-      delete 'destroy_all' => 'cart_items#destroy_all', as: 'destroy_all'
-    end
+    delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
+    resources :cart_items, only: [:index, :create, :update, :destroy]
+
     # 注文情報
     resources :orders, only: [:new, :index, :create, :show] do
       post 'confirm' => 'orders#confirm', as: 'confirm'
