@@ -25,13 +25,11 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
     # 商品
    resources :items, only: [:index, :show]
     # 顧客
-    resources :customers do
-      get 'my_page' => 'customers#show'
-      get 'information/edit' => 'customers#edit'
-      patch 'information' => 'customers#update'
-      get 'unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
-      patch 'withdraw' => 'customers#withdraw', as: 'withdraw'
-    end
+    get 'customers/my_page' => 'customers#show', as: 'my_page'
+    get 'customers/information/edit' => 'customers#edit', as: 'edit_information'
+    patch 'customers/information' => 'customers#update', as: 'update_information'
+    get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
+    patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw'
     # カート内
     resources :cart_items, only: [:index, :create, :update, :destroy] do
       delete 'destroy_all' => 'cart_items#destroy_all', as: 'destroy_all'
@@ -50,6 +48,7 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
 
     # トップページ(商品一覧画面)
     root to: "homes#top"
+
     # 商品
     resources :items, only: [:new, :index, :create, :show, :edit, :update]
     # ジャンル
@@ -60,8 +59,7 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
     resources :orders, only: [:show, :update] do
       # 製作ステータスの更新
     resources :order_details, only: [:update]
-    
-    
+
     end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
