@@ -1,1 +1,30 @@
-<h1>商品一覧</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h2>商品一覧(全<%= @items.count %>件)</h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <% @item.each do |item| %>
+      <div class="col-sm-3">
+        <div>
+         <%= link_to item_path(item.id) do %>
+          <%= image_tag item.get_image(250, 300) %>
+         <% end %>
+        </div>
+        <div>
+          <p><%= item.name %></p>
+          <% if item.is_active == true %>
+            <p>¥ <%= item.price.to_s(:delimited) %></p>
+          <% else %>
+            <p class="text-danger">販売停止中</p>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="col d-flex justify-content-center">
+    <%= paginate @item %>
+  </div>
+</div>

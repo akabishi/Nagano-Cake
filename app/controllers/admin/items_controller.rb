@@ -1,5 +1,5 @@
 class Admin::ItemsController < ApplicationController
-     def index
+  def index
     # @items = Item.all
     # ページネーションを使いたい場合は Kaminari や will_paginate などの gem をインストールする必要があります
   # 例: Kaminari を使用する場合
@@ -31,14 +31,14 @@ class Admin::ItemsController < ApplicationController
 
   def update
      @item = Item.find(params[:id])
-   
+
     if @item.update(item_params)
-      
+
       redirect_to admin_items_path(@item.id)
     else
       redirect_to edit_admin_item_path(@item.id)
     end
-    
+
   end
 
   private
