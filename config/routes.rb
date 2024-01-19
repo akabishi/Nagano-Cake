@@ -7,15 +7,12 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
 }
 
-<<<<<<< HEAD
   # 管理者用
    #URL /admin/sign_in ...
   # config/routes.rb
 devise_for :admin, skip: [:registrations, :passwords], controllers: {
   sessions: 'admin/sessions'
 }
-=======
->>>>>>> origin/develop
 
   # 会員側のルーティング設定
   scope module: :public do
