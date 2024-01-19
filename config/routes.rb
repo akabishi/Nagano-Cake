@@ -20,6 +20,8 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
     root to: "homes#top"
     # アバウトページ
     get "home/about"=>"homes#about"
+    # ジャンル検索
+    get "/search" => "items#search"
     # 商品
    resources :items, only: [:index, :show]
     # 顧客
@@ -43,12 +45,6 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   end
 
-  # 管理者用
-  #URL /admin/sign_in ...
-  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
-    sessions: "admin/sessions"
-  }
-
   # 管理者側のルーティング設定
   namespace :admin do
 
@@ -64,6 +60,7 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
     resources :orders, only: [:show, :update] do
       # 製作ステータスの更新
     resources :order_details, only: [:update]
+    
     
     end
   end
