@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# サインアップ用のコントローラー
+# 顧客の新規登録機能を管理するコントローラー
 class Public::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
