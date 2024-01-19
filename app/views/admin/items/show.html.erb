@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row mb-5 pt-5">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-10">
+      <label class="h4 bg-light px-4">商品詳細</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-4">
+      <%= image_tag url_for(@item.image), size: '350x250' %>
+    </div>
+    <div class="col-lg-8">
+      <table class="table table-borderless ">
+        <tbody>
+          <tr>
+            <th>商品名</th>
+            <td><%= @item.name %></td>
+          </tr>
+          <tr>
+            <th>商品説明</th><td><%= @item.introduction %></td>
+          </tr>
+          <tr>
+            <th>ジャンル</th><td><%= @item.genre.name %></td>
+          </tr>
+          <tr>
+            <th>税抜価格（税抜価格）</th><td><%= number_with_delimiter((@item.price * 1.1).round) %> ( <%= number_with_delimiter(@item.price) %> )円</td>
+          </tr>
+          <tr>
+            <th>
+              販売ステータス
+            </th>
+            <td>
+              <% if @item.is_active == true %>
+                <p class="text-success">販売中</p>
+              <% else %>
+                <p>販売停止中</p>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row mb-2">
+    <div class="col-lg-6"></div>
+    <div class="col-lg-6">
+      <%= link_to "編集する", edit_admin_item_path(@item), class: "btn btn-lg btn-success" %>
+    </div>
+  </div>
+</div>
