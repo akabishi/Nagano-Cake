@@ -1,9 +1,5 @@
 class Admin::ItemsController < ApplicationController
-<<<<<<< HEAD
   def index
-=======
-     def index
->>>>>>> origin/develop
     # @items = Item.all
     # ページネーションを使いたい場合は Kaminari や will_paginate などの gem をインストールする必要があります
   # 例: Kaminari を使用する場合
@@ -35,24 +31,14 @@ class Admin::ItemsController < ApplicationController
 
   def update
      @item = Item.find(params[:id])
-<<<<<<< HEAD
 
     if @item.update(item_params)
 
-=======
-   
-    if @item.update(item_params)
-      
->>>>>>> origin/develop
       redirect_to admin_items_path(@item.id)
     else
       redirect_to edit_admin_item_path(@item.id)
     end
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> origin/develop
   end
 
   private
@@ -60,8 +46,5 @@ class Admin::ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:name, :introduction, :price, :genre_id, :is_active, :image) #( :body )をpermit内へ追加
   end
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/develop
 end

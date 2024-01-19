@@ -6,12 +6,12 @@
   </div>
 
   <div class="row">
-    <% @items.each do |item| %>
+    <% @item.each do |item| %>
       <div class="col-sm-3">
         <div>
-          <%= link_to item_path(item.id) do %>
-            <%= image_tag item.get_image(200, 100) %>
-          <% end %>
+         <%= link_to item_path(item.id) do %>
+          <%= image_tag item.get_image(250, 300) %>
+         <% end %>
         </div>
         <div>
           <p><%= item.name %></p>
