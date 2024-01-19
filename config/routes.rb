@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
 
+
   # 会員側のルーティング設定
   scope module: :public do
     # トップページ
@@ -44,7 +45,8 @@ Rails.application.routes.draw do
 
   # 管理者側のルーティング設定
   namespace :admin do
-    # トップページ
+
+    # トップページ(商品一覧画面)
     root to: "homes#top"
     # 商品
     resources :items, only: [:new, :index, :create, :show, :edit, :update]
@@ -55,7 +57,8 @@ Rails.application.routes.draw do
     # 注文詳細画面(ステータス編集を兼ねる)/注文ステータスの更新
     resources :orders, only: [:show, :update] do
       # 製作ステータスの更新
-      resources :order_details, only: [:update]
+    resources :order_details, only: [:update]
+    
     end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
