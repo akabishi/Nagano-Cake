@@ -7,12 +7,12 @@ class Item < ApplicationRecord
   validates :introduction, presence: true
   validates :price, presence: true
   validates :genre_id, presence: true
-  
+
   def get_image(width, height)
-    if image.attached?
-      image.variant(resize_to_limit: [width, height]).processed
-    end
+  if image.attached?
+    image.variant(resize_to_limit: [width, height]).processed
   end
+end
 
   def with_tax_price
     (price * 1.1).floor

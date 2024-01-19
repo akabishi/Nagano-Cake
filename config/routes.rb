@@ -5,8 +5,14 @@ Rails.application.routes.draw do
   devise_for :customers,skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
-  }
+}
 
+  # 管理者用
+   #URL /admin/sign_in ...
+  # config/routes.rb
+devise_for :admin, skip: [:registrations, :passwords], controllers: {
+  sessions: 'admin/sessions'
+}
 
   # 会員側のルーティング設定
   scope module: :public do
@@ -14,6 +20,8 @@ Rails.application.routes.draw do
     root to: "homes#top"
     # アバウトページ
     get "home/about"=>"homes#about"
+    # ジャンル検索
+    get "/search" => "items#search"
     # 商品
    resources :items, only: [:index, :show]
     # 顧客
@@ -34,12 +42,6 @@ Rails.application.routes.draw do
     # 配送先
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   end
-
-  # 管理者用
-  #URL /admin/sign_in ...
-  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
-    sessions: "admin/sessions"
-  }
 
   # 管理者側のルーティング設定
   namespace :admin do
