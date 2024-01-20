@@ -8,4 +8,20 @@ class Customer < ApplicationRecord
   has_many :addresses, dependent: :destroy
   has_many :orders, dependent: :destroy
   
+  def customer_status
+    if is_active == true
+      "有効"
+    else
+      "退会"
+    end
+  end
+  
+  def full_name
+    last_name + ' ' + first_name
+  end
+  
+  def full_name_kana
+    last_name_kana + ' ' + first_name_kana
+  end
+  
 end
