@@ -2,12 +2,12 @@
   <div class="row mb-2">
     <div class="col-lg-2"></div>
     <div class="col-lg-10">
-    <label class="h4 bg-light px-4">商品新規登録</label>
+    <label class="h4 bg-light px-4 mt-4">商品新規登録</label>
     </div>
     </div>
 
     <%= form_with model: @item, url: admin_items_path, method: :post do |f| %>
-    <div class="row mb-2">
+    <div class="row mt-4">
       <div class="col-lg-3"></div>
       <div class="col-lg-2">
         <%= f.label :商品画像 %>
@@ -17,7 +17,7 @@
         </div>
       </div>
 
-      <div class="row mb-2">
+      <div class="row mt-4">
         <div class="col-lg-3"></div>
         <div class="col-lg-2">
           <%= f.label :商品名 %>
@@ -27,7 +27,7 @@
         </div>
       </div>
 
-      <div class="row mb-2">
+      <div class="row mt-4">
         <div class="col-lg-3"></div>
         <div class="col-lg-2">
           <%= f.label :商品説明 %>
@@ -37,16 +37,16 @@
         </div>
       </div>
 
-      <div class="row mb-2">
+      <div class="row mt-4">
         <div class="col-lg-3"></div>
         <div class="col-lg-2">
           <%= f.label :ジャンル %>
         </div>
         <div class="col-lg-7">
-          <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択してください" %>
+          <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "-- 選択してください --" %>
         </div>
       </div>
-      <div class="row mb-2">
+      <div class="row mt-4">
         <div class="col-lg-3"></div>
         <div class="col-lg-2">
           <%= f.label :税抜価格 %>
@@ -55,7 +55,7 @@
           <%= f.text_field :price %>
         </div>
       </div>
-      <div class="row mb-2">
+      <div class="row mt-4">
         <div class="col-lg-3"></div>
         <div class="col-lg-2">
           <%= f.label :販売ステータス %>
@@ -66,16 +66,10 @@
         </div>
       </div>
 
-      <div class="row mb-2">
+      <div class="row mt-4">
         <div class="col-lg-12 text-center">
           <%= f.submit '新規登録', class:"btn btn-success" %>
         </div>
         </div>
     <% end %>
     </div>
-  </div>
-<<<<<<< HEAD
-  </div>
-=======
-  </div>
->>>>>>> origin/develop
