@@ -7,12 +7,12 @@ class Public::CartItemsController < ApplicationController
   end
 
   def create
-    cart_item = CartItem.new(cart_item_params)
+    @cart_item = CartItem.new(cart_item_params)
     #カートが空の場合
-    if cart_item.amount == nil
+    if @cart_item.amount == nil
       redirect_to request.referer
     else
-      cart_item.save
+      @cart_item.save
       redirect_to cart_items_path
     end
   end

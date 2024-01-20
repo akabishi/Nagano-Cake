@@ -4,8 +4,8 @@
       <h3>ショッピングカート</h3>
     </div>
     <% unless @cart_items.empty? %>
-      <div class="col-2 offset-md-5 mt-5">
-        <%= link_to "カートを空にする", cart_items_destroy_all_path, method: :delete, class: "btn btn-danger", data: { confirm: "本当に空にしますか？" } %>
+      <div class="col-2 offset-md-5 mt-5 mb-3">
+        <%= link_to "カートを空にする", cart_items_destroy_all_path, method: :delete, class: "btn btn-danger", data: { confirm: "本当に空にしますか？" }, style: "white-space: nowrap;" %>
       </div>
       <table class = " table table-borderd">
         <thead class="thead-light">
@@ -21,14 +21,14 @@
           <% @cart_items.each do |cart_item| %>
           <tr>
             <td><%= cart_item.item.name %></td>
-            <td><%= cart_item.item.with_tax_price.to_s(:delimited) %>円/td>
+            <td><%= cart_item.item.with_tax_price.to_s(:delimited) %>円</td>
             <td>
               <!--個数選択のセレクトボックスの作成-->
               <%= form_with model: cart_item, url: cart_item_path(cart_item.id), local:true do |f| %>
                 <!--item_idというキーに対してcart_item.item.idという値をブラウザに表示せず送信-->
                 <%= f.hidden_field :item_id, value: cart_item.item.id %>
                 <%= f.select :amount, *[1..10] %>
-                <%= f.submit "変更", class: "btn btn-success" %>
+                <%= f.submit "変更", class: "btn btn-success ml-3" %>
               <% end %>
             </td>
             <!--アイテムごとの小計-->
@@ -42,22 +42,27 @@
           <% end %>
         </tbody>
       </table>
-      <div class = "row align-items-end">
-        <div class = "col-3">
-          <%= link_to "買い物を続ける", items_path, class: "btn btn-success" %>
+
+
+      <div class="row">
+        <div class = "col-2 text-left">
+          <%= link_to "買い物を続ける", items_path, class: "btn btn-info", style: "white-space: nowrap;" %>
         </div>
-        <div class="col-3 offset-md-6">
+      </div>
+        <div class="col-4 offset-md-6 pull-right">
           <ul class = "list-group list-group-horizontal">
             <li class = "list-group-item list-group-item-secondary">合計金額</li>
             <li class = "list-group-item"><%= @total_price.to_s(:delimited) %>円</li>
           </ul>
         </div>
       </div>
+
       <div class = "row mt-7 justify-content-center">
         <div class = "col-5">
-          <%= link_to "情報入力に進む", new_order_path, class: "btn btn-lg btn-success" %>
+          <%= link_to "情報入力に進む", new_order_path, class: "btn btn-success", style: "white-space: nowrap;" %>
         </div>
       </div>
+
     <% else %>
         <h3>カートは空です。</h3>
     <% end %>
