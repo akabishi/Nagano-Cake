@@ -1,16 +1,34 @@
+<style>
+  .aspect-ratio-box {
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%; /* 画像のアスペクト比を4:5にしたい場合は、この値を調整 */
+  }
+
+  .aspect-ratio-box img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+</style>
+
+<div class="row">
   <% items.each do |item| %>
-    <div class="col-sm-3">
-      <div>
+    <div class="col-sm-3 mb-4">
+      <div class="aspect-ratio-box">
         <%= link_to item_path(item.id) do %>
-          <%= image_tag item.get_image(250, 300) %>
+          <%= image_tag item.get_image(250, 300), class: "img-fluid" %>
         <% end %>
       </div>
-      <div>
-        <p><%= item.name %></p>
+      <div class="mt-3 text-left">
+        <h5 class="item-name"><%= item.name %></h5>
         <% if item.is_active == true %>
-          <p>¥ <%= item.price.to_s(:delimited) %></p>
+          <p class="item-price">¥ <%= item.price.to_s(:delimited) %></p>
         <% else %>
-          <p class="text-danger">販売停止中</p>
+          <p class="item-status text-danger">販売停止中</p>
         <% end %>
       </div>
     </div>
