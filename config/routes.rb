@@ -13,8 +13,6 @@ Rails.application.routes.draw do
 devise_for :admin, skip: [:registrations, :passwords], controllers: {
   sessions: 'admin/sessions'
 }
-    # ジャンル検索
-    get 'public/genres/:id/search' => 'public/searches#search_genre'
 
   # 会員側のルーティング設定
   scope module: :public do
@@ -22,7 +20,8 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
     root to: "homes#top"
     # アバウトページ
     get "home/about"=>"homes#about"
-
+    # ジャンル検索
+    get "/search" => "items#search"
     # 商品
    resources :items, only: [:index, :show]
     # 顧客
@@ -32,9 +31,9 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
     get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
     patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw'
     # カート内
-    delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
-    resources :cart_items, only: [:index, :create, :update, :destroy]
-
+    resources :cart_items, only: [:index, :create, :update, :destroy] do
+      delete 'destroy_all' => 'cart_items#destroy_all', as: 'destroy_all'
+    end
     # 注文情報
     resources :orders, only: [:new, :index, :create, :show] do
       post 'confirm' => 'orders#confirm', as: 'confirm'
