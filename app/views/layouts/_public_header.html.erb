@@ -1,6 +1,5 @@
 <header>
-
-  <nav class= "navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class= "navbar navbar-expand-lg navbar-dark" style="background: #0A6651; height:120px;">
     <div class="container">
       <a class= "navbar-brand" href="/"><span>NaganoCake</span></a>
       <% if customer_signed_in? %>
@@ -54,4 +53,5 @@
             <% end %>
           </li>
         <% end %>
+      <%= render "public/searches/search" %>
 </header>

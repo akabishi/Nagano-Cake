@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 devise_for :admin, skip: [:registrations, :passwords], controllers: {
   sessions: 'admin/sessions'
 }
+    # ジャンル検索
+    get 'public/genres/:id/search' => 'public/searches#search_genre'
 
   # 会員側のルーティング設定
   scope module: :public do
@@ -20,8 +22,8 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
     root to: "homes#top"
     # アバウトページ
     get "home/about"=>"homes#about"
-    # ジャンル検索
-    get "/search" => "items#search"
+    # 商品検索
+    get "search" => "searches#search"
     # 商品
    resources :items, only: [:index, :show]
     # 顧客
@@ -31,9 +33,9 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
     get 'customers/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
     patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw'
     # カート内
-    resources :cart_items, only: [:index, :create, :update, :destroy] do
-      delete 'destroy_all' => 'cart_items#destroy_all', as: 'destroy_all'
-    end
+    delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
+    resources :cart_items, only: [:index, :create, :update, :destroy]
+
     # 注文情報
     resources :orders, only: [:new, :index, :create, :show] do
       post 'confirm' => 'orders#confirm', as: 'confirm'
@@ -48,7 +50,6 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
 
     # トップページ(商品一覧画面)
     root to: "homes#top"
-
     # 商品
     resources :items, only: [:new, :index, :create, :show, :edit, :update]
     # ジャンル
@@ -60,7 +61,7 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
       # 製作ステータスの更新
     resources :order_details, only: [:update]
 
-    end
+      end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
