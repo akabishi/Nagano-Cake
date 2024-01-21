@@ -33,12 +33,10 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
     # カート内
     delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
     resources :cart_items, only: [:index, :create, :update, :destroy]
-
     # 注文情報
-    resources :orders, only: [:new, :index, :create, :show] do
-      post 'confirm' => 'orders#confirm', as: 'confirm'
-      get 'thanks' => 'orders#thanks', as: 'thanks'
-    end
+    resources :orders, only: [:new, :index, :create, :show]
+    post 'confirm' => 'orders#confirm', as: 'confirm'
+    get 'thanks' => 'orders#thanks', as: 'thanks'
     # 配送先
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   end
