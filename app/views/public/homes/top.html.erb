@@ -1,20 +1,47 @@
 <div class= "container">
+  <h1 class= "text-center", style="color:#A07B35; font-size:55px; font-family:'Times New Roman' ;"> Welcome to <strong>NaganoCake</strong> !! </h1>
+  <h3 class= "mb-2 text-center", style="color:#A07B35; font-size:30px; font-family:'Times New Roman' ;"> <strong>・・・ </strong></h3>
   <div class= "row">
-    <div class= "mx-auto col-11">
-      <h1>ようこそ、<strong>NaganoCake</strong>へ!!</h1>
-      <p>
-      このサイトは、ケーキ販売のECサイトになります。<br>
-      会員でない方も商品の閲覧はできますが、<br>
-      購入には館員登録が必要になります。
-      </p>
+    <div class="col-md-3">
+      <%= render 'public/searches/search_genre', genres: @genres %>
+      <div style="padding: 8px; margin-bottom: 10px; border: 5px double #A07B35; background-color: #fffaf0;">
+        <p style="color:#666666; font-size:12px;">
+          このサイトは、ケーキ販売のECサイトになります。<br>
+          会員でない方も商品の閲覧はできますが、<br>
+          購入には会員登録が必要になります。
+        </p>
+      </div>
     </div>
-    <!--画像に変更する（横並び）-->
-      <h4>新着商品</h4>
-      <% @items.each do |item| %>
-        <%= link_to item_path(item) do %>
-          <%= item.name %>
-        <% end %>
-      <% end %>
-      <%= link_to "全ての商品を見る>>", items_path, class: "col text-right" %>
+    
+    <div class= "col-md-8 offset-md-1">
+      <div class="text-left" style="background-image: url('<%= asset_path('about.jpg') %>'); background-size: cover; height: 350px;">
+      </div>
+    
+    
+    <div>
+      <h4 class="mt-2", style="color:#A07B35; font-family:'Times New Roman';"><strong>・・・ NEW ・・・</strong></h4>
+      <div class = "d-flex justify-content-around">
+        <div class="search-items d-flex flex-wrap">
+          <table>
+            <tbody>
+              <tr>
+                <% @items.each do |item| %>
+                <td class: "align-baseline text-center", style="padding-right: 30px;">
+                  <%= link_to item_path(item) , :style => "color: #A07B35;" do%>
+                    <%= image_tag item.get_image(140, 140), class: "img-fluid" %><br>
+                    <%= item.name %>
+                  <% end %>
+                </td>
+                <% end %>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+      </div>
+    　</div>
+    　<div style= "display:flex; justify-content: flex-end">
+          <%= link_to 'All Item >>>', items_path, :style => "color: #A07B35; font-weight:bold; font-size:20px; font-family:'Times New Roman';"%>
+        </div>
+    </div>
   </div>
 </div>
