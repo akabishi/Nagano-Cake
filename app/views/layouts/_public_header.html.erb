@@ -1,7 +1,7 @@
 <header>
-  <nav class= "navbar navbar-expand-lg navbar-dark" style="background: #0A6651; height:120px;">
+  <nav class= "navbar navbar-expand-lg navbar-dark" style="background: #0A6651; height:70px;">
     <div class="container">
-      <a class= "navbar-brand" href="/"><span>NaganoCake</span></a>
+      <a class= "navbar-brand" href="/" style="font-family:'Times New Roman'; font-size:30px;"><span>NaganoCake</span></a>
       <% if customer_signed_in? %>
         <p class = "text-white">ようこそ<%= current_customer.first_name_kana %>さん！</p>
       <% end %>
@@ -12,43 +12,43 @@
       <ul class= "navbar-nav ml-auto">
         <% if customer_signed_in? %>
           <li>
-            <%= link_to my_page_path, class: 'nav-link text-light' do%>
+            <%= link_to my_page_path, class: 'nav-link text-light', :style => "font-family:'Times New Roman'; font-size:20px;"  do%>
               Mypage
             <% end %>
           </li>
           <li>
-            <%= link_to items_path, class: 'nav-link text-light' do %>
+            <%= link_to items_path, class: 'nav-link text-light', :style => "font-family:'Times New Roman'; font-size:20px;"  do %>
               Items
             <% end %>
           </li>
           <li>
-            <%= link_to cart_items_path, class: 'nav-link text-light' do %>
+            <%= link_to cart_items_path, class: 'nav-link text-light', :style => "font-family:'Times New Roman'; font-size:20px;"  do %>
               Cart
             <% end %>
           </li>
           <li>
-            <%= link_to destroy_customer_session_path, method: :delete, class: 'nav-link text-light' do %>
+            <%= link_to destroy_customer_session_path, method: :delete, class: 'nav-link text-light', :style => "font-family:'Times New Roman'; font-size:20px;"  do %>
                Log Out
             <% end %>
           </li>
         <% else %>
           <li>
-            <%= link_to home_about_path, class: 'nav-link text-light' do %>
+            <%= link_to home_about_path, class: 'nav-link text-light', :style => "font-family:'Times New Roman'; font-size:20px;"  do %>
               About
             <% end %>
           </li>
           <li>
-            <%= link_to items_path, class: 'nav-link text-light' do %>
+            <%= link_to items_path, class: 'nav-link text-light', :style => "font-family:'Times New Roman'; font-size:20px;" do %>
               Items
             <% end %>
           </li>
           <li>
-            <%= link_to new_customer_registration_path, class: 'nav-link text-light' do %>
+            <%= link_to new_customer_registration_path, class: 'nav-link text-light', :style => "font-family:'Times New Roman'; font-size:20px;" do %>
               Sign Up
             <% end %>
           </li>
           <li>
-           <%= link_to new_customer_session_path, class: 'nav-link text-light' do %>
+           <%= link_to new_customer_session_path, class: 'nav-link text-light', :style => "font-family:'Times New Roman'; font-size:20px;" do %>
              Log In
             <% end %>
           </li>

@@ -1,7 +1,7 @@
 <header>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class= "navbar navbar-expand-lg navbar-dark" style="background: #0A6651; height:70px;">
     <div class="container">
-      <a class="navbar-brand" href="/"><span>NaganoCake</span></a>
+      <a class="navbar-brand" href="/" style="font-family:'Times New Roman'; font-size:30px;"><span>NaganoCake</span></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -9,32 +9,32 @@
         <ul class="navbar-nav ml-auto">
           <% if admin_signed_in? %>
             <li>
-              <%= link_to "商品一覧", admin_items_path, class: 'nav-link text-light' %>
+              <%= link_to "商品一覧", admin_items_path, class: 'nav-link text-light', :style => "font-family:'Times New Roman'; font-size:18px;" %>
             </li>
             <li>
-              <%= link_to "会員一覧", admin_customers_path, class: 'nav-link text-light' %>
+              <%= link_to "会員一覧", admin_customers_path, class: 'nav-link text-light', :style => "font-family:'Times New Roman'; font-size:18px;" %>
             </li>
             <li>
-              <%= link_to "注文履歴一覧", admin_root_path, class: 'nav-link text-light' %>
+              <%= link_to "注文履歴一覧", admin_root_path, class: 'nav-link text-light', :style => "font-family:'Times New Roman'; font-size:18px;"  %>
             </li>
             <li>
-              <%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link text-light' %>
+              <%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link text-light', :style => "font-family:'Times New Roman'; font-size:18px;" %>
             </li>
             <li>
-              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-light' %>
+              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-light' , :style => "font-family:'Times New Roman'; font-size:18px;" %>
             </li>
           <% else %>
             <li>
-              <%= link_to "About", home_about_path, class: 'nav-link text-light' %>
+              <%= link_to "About", home_about_path, class: 'nav-link text-light' , :style => "font-family:'Times New Roman'; font-size:20px;" %>
             </li>
             <li>
-              <%= link_to "商品一覧", items_path, class: 'nav-link text-light' %>
+              <%= link_to "商品一覧", items_path, class: 'nav-link text-light' , :style => "font-family:'Times New Roman'; font-size:20px;" %>
             </li>
             <li>
-              <%= link_to "新規登録", new_customer_registration_path, class: 'nav-link text-light' %>
+              <%= link_to "新規登録", new_customer_registration_path, class: 'nav-link text-light' , :style => "font-family:'Times New Roman'; font-size:20px;" %>
             </li>
             <li>
-              <%= link_to "ログイン", new_customer_session_path, class: 'nav-link text-light' %>
+              <%= link_to "ログイン", new_customer_session_path, class: 'nav-link text-light' , :style => "font-family:'Times New Roman'; font-size:20px;" %>
             </li>
           <% end %>
         </ul>

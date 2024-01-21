@@ -10,15 +10,17 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body style="background-color:#FFF9E6;">
     
     <% if request.fullpath.include? "/admin" %>
       <%= render "layouts/admin_header" %>
     <% else %>
       <%= render "layouts/public_header" %>
     <% end %>
-    <%=flash[:notice] %>
-    <%= yield %>
+    <main class= "mt-3">
+      <%=flash[:notice] %>
+      <%= yield %>
+    </main>
     <%= render "layouts/footer" %>
   </body>
 </html>
