@@ -23,7 +23,8 @@ Rails.application.routes.draw do
     root to: "homes#top"
     # アバウトページ
     get "home/about"=>"homes#about"
-
+    # 商品検索
+    get "search" => "searches#search"
     # 商品
     resources :items, only: [:index, :show]
     # 顧客
@@ -48,7 +49,8 @@ Rails.application.routes.draw do
 
     # トップページ(商品一覧画面)
     root to: "homes#top"
-
+    #検索
+    get "search" => "searches#search"
     # 商品
     resources :items, only: [:new, :index, :create, :show, :edit, :update]
     # ジャンル
@@ -58,9 +60,8 @@ Rails.application.routes.draw do
     # 注文詳細画面(ステータス編集を兼ねる)/注文ステータスの更新
     resources :orders, only: [:show, :update] do
       # 製作ステータスの更新
-      resources :order_details, only: [:update]
-    end
-
+    resources :order_details, only: [:update]
+      end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

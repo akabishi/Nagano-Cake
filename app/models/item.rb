@@ -21,4 +21,16 @@ class Item < ApplicationRecord
   def subtotal
     item.with_tax_price * amount
   end
+  
+  # 検索方法分岐
+  def self.looks(search, word)
+    if search == "partial"
+      @item = Item.where("name LIKE?","%#{word}%")
+    end
+  end
+  
+  def self.search_for(content)
+    @item = Item.where("name LIKE ?", "%#{content}%")
+  end
+  
 end
