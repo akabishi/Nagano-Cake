@@ -24,4 +24,9 @@ class Customer < ApplicationRecord
     last_name_kana + ' ' + first_name_kana
   end
   
+  def self.search_for(content)
+    
+    @customer = Customer.where(['first_name LIKE(?) OR last_name LIKE(?)', "%#{content}%", "%#{content}%"])
+  end
+  
 end

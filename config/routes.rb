@@ -49,6 +49,8 @@ Rails.application.routes.draw do
 
     # トップページ(商品一覧画面)
     root to: "homes#top"
+    #検索
+    get "search" => "searches#search"
     # 商品
     resources :items, only: [:new, :index, :create, :show, :edit, :update]
     # ジャンル
