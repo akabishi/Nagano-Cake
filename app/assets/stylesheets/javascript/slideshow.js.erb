@@ -1,0 +1,16 @@
+document.addEventListener('DOMContentLoaded', function() {
+  let currentSlide = 0;
+  const slides = document.getElementById('slideshow').getElementsByTagName('img');
+  const slideCount = slides.length;
+
+  function showSlide() {
+    for (let i = 0; i < slideCount; i++) {
+      slides[i].style.display = 'none';
+    }
+    currentSlide = (currentSlide + 1) % slideCount;
+    slides[currentSlide].style.display = 'block';
+    setTimeout(showSlide, 5000); // 5秒ごとに次のスライドに切り替える（1000 = 1秒）
+  }
+
+  showSlide();
+});

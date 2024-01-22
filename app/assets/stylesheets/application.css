@@ -10,7 +10,22 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ @import 'bootstrap';
  *= require_tree .
  *= require_self
  */
-@import 'bootstrap';
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000; /* 必要に応じて、他の要素との重なり順を調整 */
+}
+
+/* ヘッダー固定後のコンテンツのマージンやパディングを調整するためのスタイル（例） */
+body {
+  margin-top: 300px; /* ヘッダーの高さに合わせて調整 */
+}
+
+body {
+  padding-bottom: 130px; /* フッターの高さに合わせて調整してください */
+}
