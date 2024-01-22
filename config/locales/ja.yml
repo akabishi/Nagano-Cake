@@ -4,6 +4,12 @@
         payment_method: # カラム名（payment_methodカラムに対して）
           credit_card: "クレジットカード"
           transfer: "銀行振込"
+      order_detail: # モデル名（Order_detailモデルに対して）
+        making_status: # カラム名（making_statusカラムに対して）
+          unable_making: "製作不可"
+          waiting_making: "製作待ち"
+          in_making: "製作中"
+          finish_making: "製作完了"
  activerecord:
     errors:
       messages:
