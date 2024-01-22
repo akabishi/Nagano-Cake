@@ -1,31 +1,79 @@
-<div class= "container">
-  <div class= "row">
-    <div class="col-lg-8">
-      <label class="h4 bg-light px-4 mt-4"><% @order_details.name %>さんの注文履歴</label>
-      <table class="table table-borderless border-top mt-4">
-        <thead class="bg-light">
-          <tr>
-            <th>購入日時</th>
-            <th>注文個数</th>
-            <th>注文ステータス</th>
-            <th colspan="5"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @order_details.each do |order_detail| %>
-            <tr>
-              <td>
-                <%= link_to admin_order_path(order_detail), :style => "color: #A07B35;" do %>
-                  <%= order_detail.created_at.strftime("%Y/%m/%d %H:%M:%S") %>
-                <% end %>
-              </td>
-              <td><%= order_detail.amount %></td>
-              <td><%= order_detail.making_status %></td>
-            </tr>
-          <% end %>
-        </tbody>
+<div class="container p-3">
+  <div class="row">
+    <div class="col-md-12">
+      <h4>注文履歴詳細</h4>
+
+      <%= form_with model: @order, url: admin_order_path(@order), method: :patch, local: true do |f| %>
+      <table class="table">
+        <tr>
+          <td>購入者</td>
+          <td><%= @order.name %></td>
+        </tr>
+        <tr>
+          <td>注文日</td>
+          <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+        </tr>
+        <tr>
+          <td>配送先</td>
+          <td>
+            <%= @order.postal_code %><br>
+            <%= @order.address %><br>
+            <%= @order.name %>
+          </td>
+        </tr>
+        <tr>
+          <td>支払方法</td>
+          <td><%= @order.payment_method_i18n %></td>
+        </tr>
+        <tr>
+          <td>注文ステータス</td>
+          <td>
+            <%= f.select :order_status, Order.statuses_i18n.invert %>
+            <%= f.submit "更新", class: "btn btn-success" %>
+          </td>
+        </tr>
       </table>
-      <%= paginate @order_details %>
+      <% end %>
+
+      <table>
+        <tr>
+          <td>商品名</td>
+          <td>単価(税込)</td>
+          <td>数量</td>
+          <td>小計</td>
+          <td>製作ステータス</td>
+        </tr>
+      <% @order_details.each do |order_detail| %>
+
+      <% @sum = 0 %>
+      <% @sum += order_detail.item.with_tax_price %>
+
+      <%= form_with model: order_detail , url: admin_order_path(order_detail) , method: :patch , local: true do |f| %>
+          <table>
+              <tr>
+                <td><%= order_detail.item.name %></td>
+                <td><%= order_detail.item.with_tax_price %></td>
+                <td>
+                  <%= f.select :making_status, OrderDetail.making_statuses_i18n.invert %>
+                  <%= f.submit "更新", class: "btn btn-success" %>
+                </td>
+              </tr>
+            <% end %>
+            <tr>
+              <td>商品合計</td>
+              <td><%= @sum %>円</td>
+            </tr>
+            <tr>
+              <td>送料</td>
+              <td>800円</td>
+            </tr>
+            <tr>
+              <td>請求金額合計</td>
+              <td><%= @sum + 800 %>円</td>
+            </tr>
+        </table>
+      <% end %>
+
     </div>
   </div>
 </div>

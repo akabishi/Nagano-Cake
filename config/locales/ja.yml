@@ -4,6 +4,12 @@
         payment_method: # カラム名（payment_methodカラムに対して）
           credit_card: "クレジットカード"
           transfer: "銀行振込"
+        status: # カラム名（statusカラムに対して）
+          awaiting_payment: "入金待ち"
+          payment_confirmed: "入金確認"
+          in_production: "製作中"
+          preparing_for_shipment: "発送準備中"
+          shipped: "発送済み"
       order_detail: # モデル名（Order_detailモデルに対して）
         making_status: # カラム名（making_statusカラムに対して）
           unable_making: "製作不可"
