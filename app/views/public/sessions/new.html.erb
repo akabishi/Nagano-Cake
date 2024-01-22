@@ -1,28 +1,36 @@
-<h2>ログイン</h2>
+<div class="container">
 
-<div>会員の方はこちらからログイン</div>
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :"メールアドレス" %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+  <h3>ログイン</h3>
+  <p>会員の方はこちらからログイン</p>
 
-  <div class="field">
-    <%= f.label :"パスワード" %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+      <%= f.label :"メールアドレス" %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :"パスワード" %><br />
+      <%= f.password_field :password, autocomplete: "current-password" %>
+    </div>
+
+    <% if devise_mapping.rememberable? %>
+      <div class="field">
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me %>
+      </div>
+    <% end %>
+
+    <div class="actions">
+      <%= f.submit "ログイン" %>
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit "ログイン" %>
+  <div class="row">
+    <div class="col-xs-5">
+      <p class="bg-light">会員登録がお済でない方</p>
+      <%= render "public/shared/links" %>
+    </div>
   </div>
-<% end %>
 
-<div>会員登録がお済でない方</div>
-<%= render "public/shared/links" %>
+</div>
