@@ -27,5 +27,10 @@ class Item < ApplicationRecord
     if search == "partial"
       @item = Item.where("name LIKE?","%#{word}%")
     end
-end
+  end
+  
+  def self.search_for(content)
+    @item = Item.where("name LIKE ?", "%#{content}%")
+  end
+  
 end
