@@ -58,3 +58,4 @@ gem 'devise'
 gem "enum_help"
 gem 'kaminari'
 gem 'image_processing', '~> 1.2'
+gem 'pry-byebug', group: :development
