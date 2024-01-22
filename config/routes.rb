@@ -60,7 +60,6 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
     resources :orders, only: [:show, :update] do
       # 製作ステータスの更新
     resources :order_details, only: [:update]
-
       end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
