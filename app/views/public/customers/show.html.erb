@@ -1,49 +1,51 @@
 <div class="container">
   <div class="row">
     <div class="col-10 mx-auto">
-      <h3><strong>マイページ</strong></h3>
-        <table class="table table-bordered table-condensed">
+      <h2 class="mb-4" style="font-weight:bold; color:#A07B35; font-family:serif; font-size:45px; "><strong>My Page</strong></h2>
+        <table class="table table-bordered table-condensed", style="background-color: #fffaf0;">
           <p>
-            <strong class="information-link">登録情報</strong>
-            <%= link_to " 編集する", edit_information_path, class: "glyphicon glyphicon-pencil btn btn-success" %>
+            <strong class="information-link mr-3">登録情報</strong>
+            <%= link_to " 編集する", edit_information_path, class: "glyphicon glyphicon-pencil btn btn-success btn-sm" %>
           </p>
+          <tbody>
           <tr>
-            <td>氏名</td>
+            <th style="background-color: #ccc8c0; width: 20%;">氏名</th>
             <td><%= current_customer.last_name %>&nbsp;<%= current_customer.first_name %></td>
           </tr>
 
           <tr>
-            <td>カナ</td>
+            <th style="background-color: #ccc8c0;">カナ</th>
             <td><%= current_customer.last_name_kana %>&nbsp;<%= current_customer.first_name_kana %></td>
           </tr>
 
           <tr>
-            <td>郵便番号</td>
+            <th style="background-color: #ccc8c0;">郵便番号</th>
             <td><%= current_customer.postal_code %></td>
           </tr>
 
           <tr>
-            <td>住所</td>
+            <th style="background-color: #ccc8c0;">住所</th>
             <td><%= current_customer.address %></td>
           </tr>
 
           <tr>
-            <td>電話番号</td>
+            <th style="background-color: #ccc8c0;">電話番号</th>
             <td><%= current_customer.phone_number %></td>
           </tr>
 
           <tr>
-            <td>メールアドレス</td>
+            <th style="background-color: #ccc8c0;">メールアドレス</th>
             <td><%= current_customer.email %></td>
           </tr>
+          </tbody>
         </table>
         <p>
-            <strong>配送先　</strong>
-            <%= link_to " 一覧を見る", addresses_path, class: "btn btn-info" %>
+            <strong>配送先</strong>
+            <%= link_to " 一覧を見る", addresses_path, class: "btn btn-info btn-sm ml-3" %>
         </p>
         <p>
-            <strong>注文履歴</strong>
-            <%= link_to " 一覧を見る", orders_path, class: "btn btn-info" %>
+            <strong>注文履歴  </strong>
+            <%= link_to " 一覧を見る", orders_path, class: "btn btn-info btn-sm" %>
         </p>
     <div>
   </div>
