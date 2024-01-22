@@ -5,16 +5,17 @@ Rails.application.routes.draw do
   devise_for :customers,skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
-}
+  }
 
   # 管理者用
-   #URL /admin/sign_in ...
+  # URL /admin/sign_in ...
   # config/routes.rb
-devise_for :admin, skip: [:registrations, :passwords], controllers: {
-  sessions: 'admin/sessions'
-}
-    # ジャンル検索
-    get 'public/genres/:id/search' => 'public/searches#search_genre'
+  devise_for :admin, skip: [:registrations, :passwords], controllers: {
+    sessions: 'admin/sessions'
+  }
+
+  # ジャンル検索
+  get 'public/genres/:id/search' => 'public/searches#search_genre'
 
   # 会員側のルーティング設定
   scope module: :public do
@@ -25,7 +26,7 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
     # 商品検索
     get "search" => "searches#search"
     # 商品
-   resources :items, only: [:index, :show]
+    resources :items, only: [:index, :show]
     # 顧客
     get 'customers/my_page' => 'customers#show', as: 'my_page'
     get 'customers/information/edit' => 'customers#edit', as: 'edit_information'
