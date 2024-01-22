@@ -5,16 +5,17 @@ Rails.application.routes.draw do
   devise_for :customers,skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
-}
+  }
 
   # 管理者用
-   #URL /admin/sign_in ...
+  # URL /admin/sign_in ...
   # config/routes.rb
-devise_for :admin, skip: [:registrations, :passwords], controllers: {
-  sessions: 'admin/sessions'
-}
-    # ジャンル検索
-    get 'public/genres/:id/search' => 'public/searches#search_genre'
+  devise_for :admin, skip: [:registrations, :passwords], controllers: {
+    sessions: 'admin/sessions'
+  }
+
+  # ジャンル検索
+  get 'public/genres/:id/search' => 'public/searches#search_genre'
 
   # 会員側のルーティング設定
   scope module: :public do
@@ -24,7 +25,7 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
     get "home/about"=>"homes#about"
 
     # 商品
-   resources :items, only: [:index, :show]
+    resources :items, only: [:index, :show]
     # 顧客
     get 'customers/my_page' => 'customers#show', as: 'my_page'
     get 'customers/information/edit' => 'customers#edit', as: 'edit_information'
@@ -57,9 +58,9 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
     # 注文詳細画面(ステータス編集を兼ねる)/注文ステータスの更新
     resources :orders, only: [:show, :update] do
       # 製作ステータスの更新
-    resources :order_details, only: [:update]
-
+      resources :order_details, only: [:update]
     end
+
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
