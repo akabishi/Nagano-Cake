@@ -38,7 +38,6 @@ class Admin::ItemsController < ApplicationController
     else
       redirect_to edit_admin_item_path(@item.id)
     end
-
   end
 
   private

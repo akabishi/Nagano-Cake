@@ -22,6 +22,11 @@ class Admin::CustomersController < ApplicationController
     end
   end
   
+  def search
+    @search_term = params[:search_term]
+    @customers = Customer.where("name LIKE ?", "%#{@search_term}%")
+  end
+  
   private
   
   def customer_params

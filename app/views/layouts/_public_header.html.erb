@@ -1,7 +1,15 @@
+
 <header>
   <nav class= "navbar navbar-expand-lg navbar-dark" style="background: #0A6651; height:100px;">
     <div class="container">
-      <a class= "navbar-brand" href="/" style="font-family:'Times New Roman'; font-size:30px;"><span>NaganoCake</span></a>
+      <div class="logo-section d-flex justify-content-start">
+
+         <% if admin_signed_in? %>
+           <a class="navbar-brand " href="/admin" ><span><%= image_tag '1-removebg-preview.png', size: "160x160" %></span></a>
+         <% else %>
+           <a class="navbar-brand " href="/" ><span><%= image_tag '2-removebg-preview.png', size: "120x90" %></span></a>
+         <% end %> 
+      </div>  
       <% if customer_signed_in? %>
         <p class = "text-white">ようこそ<%= current_customer.first_name_kana %>さん！</p>
       <% end %>
@@ -53,4 +61,5 @@
             <% end %>
           </li>
         <% end %>
+      <%= render "public/searches/search" %>
 </header>
