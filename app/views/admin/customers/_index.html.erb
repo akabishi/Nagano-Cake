@@ -1,5 +1,5 @@
 <table class = "table table-hover">
-  <thead>
+  <thead style="background-color: #ccc8c0;">
     <tr>
       <th>会員ID</th>
       <th>氏名</th>
@@ -7,7 +7,7 @@
       <th>ステータス</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody style="background-color: #fffaf0;">
   <% customers.each do |customer| %>
     <tr>
       <td><%= customer.id %></td>
@@ -17,7 +17,13 @@
         <% end %>
       </td>
       <td><%= customer.email %></td>
-      <td><%= customer.customer_status %></td>
+      <th>
+        <% if customer.is_active %>
+          <span class="text-success">有効</span>
+        <% else %>
+          <span class="text-danger">退会</span>
+        <% end %>
+      </th>
     </tr>
   <% end %>
   </tbody>
