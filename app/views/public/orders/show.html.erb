@@ -12,7 +12,7 @@
         <tr>
           <td>配送先</td>
           <td>
-            <%= @order.postal_code %><br>
+            〒<%= @order.postal_code %><br>
             <%= @order.address %><br>
             <%= @order.name %>
           </td>
@@ -23,7 +23,7 @@
         </tr>
         <tr>
           <td>ステータス</td>
-          <td><%= @order.status %></td>
+          <td><%= @order.status_i18n %></td>
         </tr>
       </table>
 

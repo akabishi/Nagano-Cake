@@ -1,9 +1,29 @@
 class Public::OrdersController < ApplicationController
 
   def new
+    @order = Order.new
+    @addresses = Address.all
   end
 
   def confirm
+    @order = Order.new(order_params)
+    # order パラメーター内の address パラメーターの値を取得(配送先)
+    @address_type = params[:order][:select_address]
+    # 選択した配送先に応じて、@order内のデータを変更
+    case @address_type
+    when "0"
+      @order.postal_code = current_customer.postal_code
+      @order.address = current_customer.address
+      @order.name = current_customer.last_name + current_customer.first_name
+    when "1"
+      @address = Address.find(params[:order][:address_id])
+      @order.postal_code = @address.postal_code
+      @order.address = @address.address
+      @order.name = @address.name
+    when "2"
+      @order.customer_id = current_customer.id
+    end
+
     # 注文情報一覧(カート内一覧)
     @cart_items = CartItem.where(customer_id: current_customer.id)
     # 送料
@@ -14,31 +34,17 @@ class Public::OrdersController < ApplicationController
     @cart_items_price = @cart_items.sum { |cart_item| cart_item.item.price * cart_item.amount }
     # 請求金額
     @total_price = @shipping_cost + @cart_items_price
-    # order パラメーター内の address パラメーターの値を取得(配送先)
-    @address_type = params[:order][:select_address]
 
-    # 選択した配送先に応じて、@order内のデータを変更
-    case @address_type
-    when "0"
-      @order = Order.new(order_params)
-      @order.postal_code = current_customer.postal_code
-      @order.address = current_customer.address
-      @order.name = current_customer.first_name + current_customer.last_name
-    when "1"
-      @order = Order.new(order_params)
-      @address = Address.find(params[:order][:address_id])
-      @order.postal_code = @address.postal_code
-      @order.address = @address.address
-      @order.name = @address.name
-    when "2"
-      @order = Order.new(order_params)
-    end
+    render :confirm
 
   end
 
   def create
+    # hidden_fieldを作るのに使う
     order = Order.new(order_params)
     order.save
+
+    # カート内商品の情報を取得
     @cart_items = current_customer.cart_items.all
 
     @cart_items.each do |cart_item|
@@ -56,7 +62,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-    @orders=Order.all
+    @orders=Order.page(params[:page]).per(10)
   end
 
   def show
