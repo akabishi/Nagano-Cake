@@ -7,7 +7,7 @@ class OrderDetail < ApplicationRecord
     unable_making: 0,
     waiting_making: 1,
     in_making: 2,
-    finish_making: 3
+    making_completed: 3
   }
 
 end
