@@ -47,7 +47,9 @@
       <%= render "layouts/public_header" %>
     <% end %>
     <main>
-      <%= flash[:notice] %>
+      <div>
+        <%= flash[:notice] %>
+      </div>
       <%= yield %>
     </main>
     <footer>
