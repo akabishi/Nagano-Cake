@@ -12,7 +12,7 @@
           shipped: "発送済み"
       order_detail: # モデル名（Order_detailモデルに対して）
         making_status: # カラム名（making_statusカラムに対して）
-          unable_making: "製作不可"
+          unable_making: "着手不可"
           waiting_making: "製作待ち"
           in_making: "製作中"
           finish_making: "製作完了"

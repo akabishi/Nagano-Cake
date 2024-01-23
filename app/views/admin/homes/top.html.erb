@@ -3,7 +3,7 @@
     <div class="col-lg-8">
       <label class="h4 bg-light px-4 mt-4">注文履歴一覧</label>
       <table class="table table-borderless border-top mt-4">
-        <!-- mt-4を追加して上に4単位のマージンを適用 -->
+
         <thead class="bg-light">
           <tr>
             <th>購入日時</th>
@@ -14,21 +14,24 @@
           </tr>
         </thead>
         <tbody>
-          <% @order_details.each do |order_detail| %>
+          <% @orders.each do |order| %>
             <tr>
               <td>
-                <%= link_to admin_order_path(order_detail), :style => "color: #A07B35;" do %>
-                  <%= order_detail.created_at.strftime("%Y/%m/%d %H:%M:%S") %>
+                <%= link_to admin_order_path(order), :style => "color: #A07B35;" do %>
+                  <%= order.created_at.strftime("%Y/%m/%d %H:%M:%S") %>
                 <% end %>
               </td>
-              <td><%= order_detail.order.name %></td>
-              <td><%= order_detail.amount %></td>
-              <td><%= order_detail.making_status %></td>
+              <td><%= order.name %></td>
+              <td>
+                <% total_amount = order.order_details.sum(&:amount) %>
+                <%= total_amount %>
+              </td>
+              <td><%= order.status_i18n %></td>
             </tr>
           <% end %>
         </tbody>
       </table>
-      <%= paginate @order_details %>
+      <%= paginate @orders %>
     </div>
   </div>
 </div>
