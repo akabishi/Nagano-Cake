@@ -1,4 +1,4 @@
-<header>
+<header style="position: fixed; top: 0; width: 100%; background: #0A6651; height: 100px; z-index: 1000;">
   <nav class= "navbar navbar-expand-lg navbar-dark" style="background: #0A6651; height:100px;">
     <div class="container">
       <a class="navbar-brand" href="/" style="font-family:'Times New Roman'; font-size:30px;"><span>NaganoCake</span></a>
@@ -6,38 +6,56 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav ml-auto" style="margin-top: 22px;">
           <% if admin_signed_in? %>
             <li>
-              <%= link_to "商品一覧", admin_items_path, class: 'nav-link text-light', :style => "font-family:'Times New Roman'; font-size:15px;" %>
+              <%= link_to admin_items_path, class: "btn btn-outline-light rounded-pill mr-2", :style => "font-family:'Times New Roman'; font-size:20px;"  do %>
+              <i class="fa-solid fa-cake-candles mr-2"></i>Items
+              <% end %>
             </li>
             <li>
-              <%= link_to "会員一覧", admin_customers_path, class: 'nav-link text-light', :style => "font-family:'Times New Roman'; font-size:15px;" %>
+              <%= link_to admin_customers_path, class: "btn btn-outline-light rounded-pill mr-2", :style => "font-family:'Times New Roman'; font-size:20px;"  do %>
+              <i class="fa-solid fa-users mr-2"></i>Customers
+              <% end %>
             </li>
             <li>
-              <%= link_to "注文履歴一覧", admin_root_path, class: 'nav-link text-light', :style => "font-family:'Times New Roman'; font-size:15px;"  %>
+              <%= link_to admin_root_path, class: "btn btn-outline-light rounded-pill mr-2", :style => "font-family:'Times New Roman'; font-size:20px;"  do %>
+              <i class="fa-solid fa-cart-shopping"></i>Orders
+              <% end %>
             </li>
             <li>
-              <%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link text-light', :style => "font-family:'Times New Roman'; font-size:15px;" %>
+              <%= link_to admin_genres_path, class: "btn btn-outline-light rounded-pill mr-2", :style => "font-family:'Times New Roman'; font-size:20px;"  do %>
+              <i class="fa-solid fa-list mr-2"></i>Category
+              <% end %>
             </li>
             <li>
-              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-light' , :style => "font-family:'Times New Roman'; font-size:15px;" %>
+              <%= link_to destroy_admin_session_path, method: :delete, class: "btn btn-outline-light rounded-pill mr-2", :style => "font-family:'Times New Roman'; font-size:20px;"  do %>
+              <i class="fa-solid fa-right-from-bracket mr-2"></i>Log out
+              <% end %>
             </li>
             <div>
               <%= render "admin/searches/form" %>
             </div>
           <% else %>
             <li>
-              <%= link_to "About", home_about_path, class: 'nav-link text-light' , :style => "font-family:'Times New Roman'; font-size:20px;" %>
+              <%= link_to home_about_path, class: "btn btn-outline-light rounded-pill mr-2", :style => "font-family:'Times New Roman'; font-size:20px;"  do %>
+              About
+              <% end %>
             </li>
             <li>
-              <%= link_to "Items", items_path, class: 'nav-link text-light' , :style => "font-family:'Times New Roman'; font-size:20px;" %>
+              <%= link_to items_path, class: "btn btn-outline-light rounded-pill mr-2", :style => "font-family:'Times New Roman'; font-size:20px;"  do %>
+              Items
+              <% end %>
             </li>
             <li>
-              <%= link_to "Sign UP", new_customer_registration_path, class: 'nav-link text-light' , :style => "font-family:'Times New Roman'; font-size:20px;" %>
+              <%= link_to new_customer_registration_path, class: "btn btn-outline-light rounded-pill mr-2", :style => "font-family:'Times New Roman'; font-size:20px;"  do %>
+              Sign up
+              <% end %>
             </li>
             <li>
-              <%= link_to "Log In", new_customer_session_path, class: 'nav-link text-light' , :style => "font-family:'Times New Roman'; font-size:20px;" %>
+              <%= link_to new_customer_session_path, class: "btn btn-outline-light rounded-pill mr-2", :style => "font-family:'Times New Roman'; font-size:20px;"  do %>
+              Log in
+              <% end %>
             </li>
           <% end %>
         </ul>

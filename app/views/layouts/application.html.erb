@@ -3,24 +3,57 @@
   <head>
     <title>NaganoCake</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    
+    <script src="https://kit.fontawesome.com/943c365873.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
+    <style>
+      body {
+        background-color: #FFF9E6;
+        padding-bottom: 80px; /* フッターの高さに合わせて調整してください */
+        margin-bottom: 0; /* 余分なマージンを削除 */
+      }
+
+       main {
+        padding-top: 120px; /* ヘッダーの高さ + 追加の余白分 */
+        margin-bottom: 50px;
+      }
+
+      footer {
+        background: #0A6651;
+        height: 80px;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+      }
+
+      .footer-text {
+        color: white;
+        line-height: 80px; /* 高さと揃えるためにフッターの高さと同じにします */
+        text-align: center;
+      }
+    </style>
   </head>
 
-  <body style="background-color:#FFF9E6;">
+  <body>
     
     <% if request.fullpath.include? "/admin" %>
       <%= render "layouts/admin_header" %>
     <% else %>
       <%= render "layouts/public_header" %>
     <% end %>
-    <main class= "mt-5">
-      <%=flash[:notice] %>
+    <main>
+      <%= flash[:notice] %>
       <%= yield %>
     </main>
-    <%= render "layouts/footer" %>
+    <footer>
+      <div class="fixed-bottom">
+        <p class="footer-text">team akaboshi</p>
+      </div>
+    </footer>
   </body>
 </html>
