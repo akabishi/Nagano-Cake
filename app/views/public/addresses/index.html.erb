@@ -1,50 +1,72 @@
 <div class = "container">
   <div class = "row">
-    <div class = "col-10 mx-auto">
-      <h1>配送先登録/一覧</h1>
-      <%= form_with model: @address, url: addresses_path, method: :post do |f| %>
-        <div class="form-group ">
-          <%= f.label :postal_code, "郵便番号(ハイフンなし)" %>
-          <%= f.text_field :postal_code, placeholder: "0000000",class: "form-control" %>
-        </div>
-        <div class="form-group">
-          <%= f.label :address, "住所" %>
-          <%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0", class: "form-control" %>
-        </div>
-        <div class="form-group">
-          <%= f.label :name, "宛名" %>
-          <%= f.text_field :name, placeholder: "令和道子", class: "form-control" %>
-        </div>
-        <div class="form-group">
-          <%= f.submit "新規登録", class: "btn btn-success" %>
-        </div>
-      <% end %>
+    <div class = "col-12 mx-auto">
+     <h4 class="pl-5 pb-3" style="font-weight:bold; color:#A07B35; font-family:'Times New Roman'; font-size:20px;">
+       <span style="background-color: rgba(204, 200, 192, 0.5)">配送先登録 / 一覧</span>
+      </h4>
 
-      <table class = " table table-borderd">
-        <% unless @addresses.empty? %>
-        <thead class="thead-light">
+      <div class = col-12>
+        <%= form_with model: @address, url: addresses_path, method: :post do |f| %>
+          <table = "table">
           <tr>
-            <th>郵便番号</th>
-            <th>住所</th>
-            <th>宛名</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @addresses.each do |address| %>
-          <tr>
-            <td><%= address.postal_code %></td>
-            <td><%= address.address %></td>
-            <td><%= address.name %></td>
-            <td>
-              <%= link_to "編集する", edit_address_path(address.id), class: "btn btn-success" %>
-              <%= link_to "削除する", address_path(address.id), method: :delete, class: "btn btn-danger" %>
+            <td class="form-group pr-5">
+              <%= f.label :postal_code, "郵便番号(ハイフンなし)" %>
+            </td>
+            <td class="form-group pb-2">
+              <%= f.text_field :postal_code, placeholder: "0000000", class: "form-control" %>
             </td>
           </tr>
-          <% end %>
-        </tbody>
+          <tr>
+            <td class="form-group pr-5">
+              <%= f.label :address, "住所" %>
+            </td>
+            <td class="form-group pb-2" colspan="2" style="width:300px;">
+              <%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0", class: "form-control" %>
+            </td>
+          </tr>
+          <tr>
+            <td class="form-group pr-5">
+              <%= f.label :name, "宛名" %>
+            </td>
+            <td class="form-group pb-2">
+              <%= f.text_field :name, placeholder: "令和道子", class: "form-control" %>
+            </td>
+            <td class="pb-2 pl-5">
+              <%= f.submit "新規登録", class: "btn btn-success ml-5" %>
+            </td>
+          </tr>
+          </table>
         <% end %>
-      </table>
+      </div>
+
+      <div class = col-10>
+        <table class = " table table-bordered mt-5">
+          <% unless @addresses.empty? %>
+            <thead class="thead-light">
+              <tr>
+                <th>郵便番号</th>
+                <th>住所</th>
+                <th>宛名</th>
+                <th class = "width-300"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @addresses.each do |address| %>
+                <tr>
+                  <td class = "align-middle"><%= address.postal_code %></td>
+                  <td class = "align-middle"><%= address.address %></td>
+                  <td class = "align-middle"><%= address.name %></td>
+                  <td class = "text-center" >
+                    <%= link_to "編集する", edit_address_path(address.id), class: "btn btn-success btn-sm mr-3" %>
+                    <%= link_to "削除する", address_path(address.id), method: :delete, class: "btn btn-danger btn-sm" %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          <% end %>
+        </table>
+      </div>
+
     </div>
   </div>
 </div>
