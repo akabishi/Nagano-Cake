@@ -73,6 +73,9 @@ class Public::OrdersController < ApplicationController
   def thanks
   end
 
+  def error
+  end
+
   private
 
   def order_params
