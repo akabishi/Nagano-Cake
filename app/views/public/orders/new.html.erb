@@ -2,49 +2,70 @@
   <div class="row">
     <div class="col-md-12">
 
-      <h3>注文情報入力</h3>
+      <h4 class="pl-5 pb-3" style="font-weight:bold; color:#A07B35; font-family:'Times New Roman'; font-size:20px;">
+        <span style="background-color: rgba(204, 200, 192, 0.5)">注文情報入力</span>
+      </h4>
       <%= form_with model: @order, url: confirm_path, method: :post , local: true do |f|  %>
 
-        <h4>支払い方法</h4>
-        <%= f.radio_button :payment_method, Order.payment_methods.key(0), checked: true %>
-        <%= f.label :payment_method_credit_card, Order.payment_methods_i18n[:credit_card] %>
-        <br>
-        <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
-        <%= f.label :payment_method_transfer, Order.payment_methods_i18n[:transfer]%>
+        <div><strong class = "p-1">支払い方法</strong></div>
+        <div class = "pl-4">
+          <%= f.radio_button :payment_method, Order.payment_methods.key(0), checked: true %>
+          <%= f.label :payment_method_credit_card, Order.payment_methods_i18n[:credit_card] %>
+        </div>
+        <div class = "pl-4">
+          <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
+          <%= f.label :payment_method_transfer, Order.payment_methods_i18n[:transfer]%>
+        </div>
 
-        <h4>お届け先</h4>
+        <div><strong class = "p-1">お届け先</strong></div>
         <!--自身の住所-->
-        <%= f.radio_button :select_address, 0, checked: true %>
-        <%= f.label :address_type, "ご自身の住所" %>
-        <br>
-        〒<%= current_customer.postal_code + " " + current_customer.address + " " + current_customer.first_name + current_customer.last_name %>
-        <br>
+        <div class = "pl-3">
+          <%= f.radio_button :select_address, 0, checked: true %>
+          <%= f.label :address_type, "ご自身の住所" %>
+        </div>
+        <div class = "pl-5">
+          〒<%= current_customer.postal_code + " " + current_customer.address %>
+        </div>
+        <div class = "pl-5">
+          <%= current_customer.first_name + current_customer.last_name %>
+        </div>
         <!--登録済み住所-->
-        <%= f.radio_button :select_address, 1 %>
-        <%= f.label :address_type, "登録済み住所から選択" %>
-        <br>
-        <%= f.select :address_id, options_from_collection_for_select(@addresses.all, :id, :address_display) %>
-        <br>
+        <div class = "pl-3 pt-3">
+          <%= f.radio_button :select_address, 1 %>
+          <%= f.label :address_type, "登録済み住所から選択" %>
+          <div class = "pl-4">
+            <%= f.select :address_id, options_from_collection_for_select(@addresses.all, :id, :address_display) %>
+          </div>
+        </div>
         <!--新しいお届け先-->
-        <%= f.radio_button :select_address, 2 %>
-        <%= f.label :address_type, "新しいお届け先" %>
+        <div class = "pl-3 pt-3">
+          <%= f.radio_button :select_address, 2 %>
+          <%= f.label :address_type, "新しいお届け先" %>
+        </div>
         <table>
           <tr>
-            <td>郵便番号(ハイフンなし)</td>
-            <td><%= f.text_field :postal_code, placeholder: "0000000" %></td>
+            <td class="pl-5">郵便番号(ハイフンなし)</td>
+            <td class="form-group pl-5">
+              <%= f.text_field :postal_code, class: "form-control", placeholder: "0000000" %>
+            </td>
           </tr>
           <tr>
-            <td>住所</td>
-            <td><%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0" %></td>
+            <td class="pl-5">住所</td>
+            <td class="form-group pl-5 pt-2">
+              <%= f.text_field :address, class: "form-control", placeholder: "東京都渋谷区代々木神園町0-0" %>
+            </td>
           </tr>
           <tr>
-            <td>宛名</td>
-            <td><%= f.text_field :name, placeholder: "令和道子" %></td>
+            <td class="pl-5">宛名</td>
+            <td class="form-group pl-5 pt-2">
+              <%= f.text_field :name, class: "form-control", placeholder: "令和道子" %>
+            </td>
           </tr>
         </table>
 
-        <br>
-        <%= f.submit "確認画面へ進む", class: "btn btn-info" %>
+        <div class="d-flex justify-content-center pt-3">
+          <%= f.submit "確認画面へ進む", class: "btn btn-info" %>
+        </div>
       <% end %>
 
     </div>
