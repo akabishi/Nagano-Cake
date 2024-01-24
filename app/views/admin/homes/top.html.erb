@@ -1,10 +1,12 @@
 <div class= "container">
   <div class= "row">
-    <div class="col-lg-8">
-      <label class="h4 bg-light px-4 mt-4">注文履歴一覧</label>
-      <table class="table table-borderless border-top mt-4">
+    <div class="col-12">
+      <h4 style="font-weight:bold; color:#A07B35; font-family:'Times New Roman'; font-size:20px;">
+        <span style="background-color: rgba(204, 200, 192, 0.5)">注文履歴一覧</span>
+      </h4>
+      <table class="table border-top mt-4">
 
-        <thead class="bg-light">
+        <thead style="background-color: #ccc8c0;">
           <tr>
             <th>購入日時</th>
             <th>購入者</th>
@@ -31,7 +33,9 @@
           <% end %>
         </tbody>
       </table>
-      <%= paginate @orders %>
+      <div class="d-flex justify-content-center">
+        <%= paginate @orders %>
+      </div>
     </div>
   </div>
 </div>

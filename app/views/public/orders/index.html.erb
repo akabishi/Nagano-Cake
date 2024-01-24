@@ -1,10 +1,12 @@
 <div class="container p-3">
   <div class="row">
-    <h4>注文履歴一覧</h4>
+    <h4 class = "pl-5 pb-3" style="font-weight:bold; color:#A07B35; font-family:'Times New Roman'; font-size:20px;">
+      <span style="background-color: rgba(204, 200, 192, 0.5)">注文情報確認</span>
+    </h4>
     <div class="col-md-12">
-      <table class="table">
-        <tr>
-          <td>注文日</td>
+      <table class="table border table-bordered">
+        <tr style="background-color: #ccc8c0;">
+          <td >注文日</td>
           <td>配送先</td>
           <td>注文商品</td>
           <td>支払金額</td>
@@ -24,13 +26,15 @@
                 <p><%= order_detail.item.name %></p>
               <% end %>
             </td>
-            <td><%= order.total_price %>円</td>
+            <td><%= number_with_delimiter(order.total_price) %>円</td>
             <td><%= order.status_i18n %></td>
             <td><%= link_to "表示する", order_path(order.id), class: "btn btn-info"  %></td>
           </tr>
         <% end %>
       </table>
-      <%= paginate @orders %>
+      <div class="d-flex justify-content-center">
+        <%= paginate @orders %>
+      </div>
     </div>
   </div>
 </div>

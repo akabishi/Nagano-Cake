@@ -6,28 +6,28 @@
       </h4>
 
       <%= form_with model: @address, url: address_path(@address), method: :patch do |f| %>
-        <table class = "table">
+        <table class = "table-borderless">
           <tr>
-            <td class="form-group align-middle">
+            <td class="form-group align-middle pr-5">
               <%= f.label :postal_code, "郵便番号(ハイフンなし)" %>
             </td>
-            <td class="form-group">
+            <td class="form-group pb-2">
               <%= f.text_field :postal_code, class: "form-control" %>
             </td>
           </tr>
           <tr>
-            <td class="form-group align-middle">
+            <td class="form-group align-middle pr-5">
               <%= f.label :address, "住所" %>
             </td>
-            <td class="form-group" colspan="2" style="max-width: 300px;">
+            <td class="form-group pb-2" colspan="2" style="max-width: 300px;">
               <%= f.text_field :address, class: "form-control" %>
             </td>
           </tr>
           <tr>
-            <td class="form-group align-middle">
+            <td class="form-group align-middle pr-5">
               <%= f.label :name, "宛名" %>
             </td>
-            <td class="form-group">
+            <td class="form-group pb-2">
               <%= f.text_field :name, class: "form-control" %>
             </td>
             <td class="form-group pl-5">
