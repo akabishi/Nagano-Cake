@@ -40,6 +40,7 @@ Rails.application.routes.draw do
     resources :orders, only: [:new, :index, :create, :show]
     post 'confirm' => 'orders#confirm', as: 'confirm'
     get 'thanks' => 'orders#thanks', as: 'thanks'
+    get 'confirm', to: 'orders#error', as: 'error'
     # 配送先
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   end
