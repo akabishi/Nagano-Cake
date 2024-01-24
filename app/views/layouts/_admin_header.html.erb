@@ -1,7 +1,7 @@
 <header style="position: fixed; top: 0; width: 100%; background: #0A6651; height: 100px; z-index: 1000;">
   <nav class= "navbar navbar-expand-lg navbar-dark" style="background: #0A6651; height:100px;">
     <div class="container">
-      <a class="navbar-brand" href="/" style="font-family:'Times New Roman'; font-size:30px;"><span>NaganoCake</span></a>
+      <a class="navbar-brand" href="/" style="font-family:'Times New Roman'; font-size:40px;"><span>NaganoCake</span></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -20,7 +20,7 @@
             </li>
             <li>
               <%= link_to admin_root_path, class: "btn btn-outline-light rounded-pill mr-2", :style => "font-family:'Times New Roman'; font-size:20px;"  do %>
-              <i class="fa-solid fa-cart-shopping"></i>Orders
+              <i class="fa-solid fa-cart-shopping mr-2"></i>Orders
               <% end %>
             </li>
             <li>
@@ -38,23 +38,23 @@
             </div>
           <% else %>
             <li>
-              <%= link_to home_about_path, class: "btn btn-outline-light rounded-pill mr-2", :style => "font-family:'Times New Roman'; font-size:20px;"  do %>
-              About
+              <%= link_to home_about_path, class: "btn btn-outline-light rounded-pill mr-2", :style => "font-family:'Times New Roman'; font-size:20px; margin-bottom: 20px;"  do %>
+              <i class="fa-solid fa-hand-holding-heart mr-2"></i> About
               <% end %>
             </li>
             <li>
-              <%= link_to items_path, class: "btn btn-outline-light rounded-pill mr-2", :style => "font-family:'Times New Roman'; font-size:20px;"  do %>
-              Items
+              <%= link_to items_path, class: "btn btn-outline-light rounded-pill mr-2", :style => "font-family:'Times New Roman'; font-size:20px; margin-bottom: 20px;"  do %>
+              <i class="fa-solid fa-cake-candles mr-2"></i> Items
               <% end %>
             </li>
             <li>
-              <%= link_to new_customer_registration_path, class: "btn btn-outline-light rounded-pill mr-2", :style => "font-family:'Times New Roman'; font-size:20px;"  do %>
-              Sign up
+              <%= link_to new_customer_registration_path, class: "btn btn-outline-light rounded-pill mr-2", :style => "font-family:'Times New Roman'; font-size:20px; margin-bottom: 20px;"  do %>
+              <i class="fa-solid fa-user-plus mr-1"></i> Sign Up
               <% end %>
             </li>
             <li>
-              <%= link_to new_customer_session_path, class: "btn btn-outline-light rounded-pill mr-2", :style => "font-family:'Times New Roman'; font-size:20px;"  do %>
-              Log in
+              <%= link_to new_customer_session_path, class: "btn btn-outline-light rounded-pill mr-2", :style => "font-family:'Times New Roman'; font-size:20px; margin-bottom: 20px;"  do %>
+              <i class="fa-solid fa-arrow-right-to-bracket mr-2"></i> Log In
               <% end %>
             </li>
           <% end %>

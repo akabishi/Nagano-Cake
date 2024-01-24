@@ -1,27 +1,52 @@
-<div class="container mt-5 mb-5 pt-5">
-  <div class="row text-center text-xs-center text-sm-left text-md-left">
-    <div class="col-xs-12 col-sm-12 col-md-6 mx-auto text-right">
-      <%= image_tag @item.get_image(400, 250), class: "full-width mx-auto" %>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-3 mt-5 mb-3">
+      <%= render 'public/searches/search_genre', genres: @genres %>
     </div>
-    <div class="col-xs-12 col-sm-12 col-md-6 mx-auto">
-      <h2><%= @item.name %></h2>
-      <p><%= @item.introduction %></p>
-      <% if @item.is_active == true %>
-        <p class="mb-5 mt-4">
-          <strong>¥ <%= @item.with_tax_price.to_s(:delimited) %></strong><span>(税込)</span>
-        </p>
-        <p>
-          <%= form_with model: @cart_item, url: cart_items_path, method: :post, local:true do |f| %>
-          <%= f.hidden_field :customer_id, value: current_customer&.id %>
-            <%= f.hidden_field :item_id, value: @item.id %>
-            <%= f.select :amount, *[1..10] %>
-            <%= f.submit "カートに入れる", class: "btn btn-success" %>
-          <% end %>
-        </p>
-      <% else %>
-        <p class="text-danger">販売停止中</p>
-      <% end %>
-      
+    <div class="col-md-9">
+      <div class="row text-center text-xs-center text-sm-left text-md-left mt-5">
+        <div class="col-md-5 offset-md-1 pl-5">
+          <%= image_tag @item.get_image(330, 315), class: "full-width mx-auto mb-3" %>
+        </div>
+        <div class="col-md-6">
+          <div class="border p-4" style="background-color: white;">
+            <table class="table table-borderless">
+              <tr>
+                <td style="font-family: serif;">
+                  <h3><strong><%= @item.name %></strong></h3>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <h5><%= @item.introduction %></h5>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <% if @item.is_active == true %>
+                    <div class="row ml-1">
+                      <strong><h3>¥ <%= @item.with_tax_price.to_s(:delimited) %></strong>
+                      <span>(税込)</span></h3>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <%= form_with model: @cart_item, url: cart_items_path, method: :post, local:true do |f| %>
+                      <%= f.hidden_field :customer_id, value: current_customer&.id %>
+                      <%= f.hidden_field :item_id, value: @item.id %>
+                      <%= f.select :amount, *[1..10] %>
+                      <%= f.submit "カートに入れる", class: 'btn btn-info ml-5' %>
+                    <% end %>
+                  </td>
+                </tr>
+              </table>
+            <% else %>
+              <p class="text-danger">販売停止中</p>
+            <% end %>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
