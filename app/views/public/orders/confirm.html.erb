@@ -1,60 +1,66 @@
 <div class="container p-3">
-  <h3>注文情報確認</h3>
   <div class="row">
     <div class="col-md-8">
-      <table class="table">
-        <tr>
-          <td>商品名</td>
-          <td>単価(税込)</td>
-          <td>数量</td>
-          <td>小計</td>
-        </tr>
-        <% @cart_items.each do |cart_item| %>
-          <tr>
-            <td>
-              <div class="d-flex align-items-top">
-                <%= image_tag cart_item.item.image, size: "100x80" %>
-                <p class="ml-3"><%= cart_item.item.name %></p>
-              </div>
-            </td>
-            <td><%= cart_item.item.price %></td>
-            <td><%= cart_item.amount %></td>
-            <td><%= cart_item.item.price*cart_item.amount %></td>
-          </tr>
-        <% end %>
-      </table>
-    </div>
-    <div class="col-md-4">
-      <table class="table">
-        <tr>
-          <td>送料</td>
-          <td><%= @shipping_cost %></td>
-        </tr>
-        <tr>
-          <td>商品合計</td>
-          <td><%= @cart_items_price %></td>
-        </tr>
-        <tr>
-          <td>請求額</td>
-          <td><%= @total_price %></td>
-        </tr>
-      </table>
-    </div>
+      <h4 class = "pl-5 pb-3" style="font-weight:bold; color:#A07B35; font-family:'Times New Roman'; font-size:20px;">
+        <span style="background-color: rgba(204, 200, 192, 0.5)">注文情報確認</span>
+      </h4>
 
-    <div class="col-md-8 d-flex align-items-center">
-      <h4 class="mr-3">支払い方法</h4>
+      <div class="d-flex">
+        <div>
+          <table class="table border table-bordered">
+            <tr style="background-color: #ccc8c0;">
+              <td>商品名</td>
+              <td>単価(税込)</td>
+              <td>数量</td>
+              <td>小計</td>
+            </tr>
+            <% @cart_items.each do |cart_item| %>
+              <tr>
+                <td>
+                  <div class="d-flex align-items-top">
+                    <%= image_tag cart_item.item.image, size: "100x80" %>
+                    <p class="ml-3"><%= cart_item.item.name %></p>
+                  </div>
+                </td>
+                <td><%= number_with_delimiter(cart_item.item.price) %></td>
+                <td><%= cart_item.amount %></td>
+                <td><%= number_with_delimiter(cart_item.item.price*cart_item.amount) %></td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+        <div class="ml-5">
+          <table class="table border table-bordered">
+            <tr>
+              <td style="background-color: #ccc8c0;">送料</td>
+              <td><%= @shipping_cost %></td>
+            </tr>
+            <tr>
+              <td style="background-color: #ccc8c0;">商品合計</td>
+              <td><%= number_with_delimiter(@cart_items_price) %></td>
+            </tr>
+            <tr>
+              <td style="background-color: #ccc8c0;">請求額</td>
+              <td><%= number_with_delimiter(@total_price) %></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+    <div class="col-md-8 d-flex align-items-center pt-3">
+      <div><strong class = "p-1 pr-3">支払い方法</strong></div>
       <% if @selected_payment_method == "credit_card" %>
-        クレジットカード
+        <span class="pl-3">クレジットカード</span>
       <% else %>
-        銀行振込
+        <span class="pl-3">銀行振込</span>
       <% end %>
     </div>
-    <div class="col-md-8 d-flex align-items-center">
-      <h4 class="mr-3">お届け先</h4>
-      〒<%= @order.postal_code + " " + @order.address + " " + @order.name %>
+    <div class="col-md-8 d-flex align-items-center pt-3">
+      <div><strong class = "p-1 pr-3">お届け先　</strong></div>
+      <span class="pl-3">〒<%= @order.postal_code + " " + @order.address + " " + @order.name %></span>
     </div>
 
-    <div class="col-md-12">
+    <div class="col-md-12 pt-5 d-flex justify-content-center">
       <%= form_with model: @order, url: orders_path, local:true do |f|  %>
         <%= f.hidden_field :customer_id, value: current_customer.id %>
         <%= f.hidden_field :payment_method, value:  @order.payment_method %>

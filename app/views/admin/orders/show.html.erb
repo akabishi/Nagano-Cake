@@ -1,40 +1,34 @@
 <div class="container">
   <div class="row">
-    <div class="col-lg-12 col-md-10">
-      <div class="d-flex justify-content-top mb-3">
-         <h2 class="mb-4" style="font-weight:bold; color:#A07B35; font-family:'Times New Roman'; font-size:45px;"><strong>Order history details</strong></h2>
-      </div>
-    </div>
-  </div>
+    <div class="col-md-12">
+    <h4 class = "pl-5 pb-3" style="font-weight:bold; color:#A07B35; font-family:'Times New Roman'; font-size:20px;">
+      <span style="background-color: rgba(204, 200, 192, 0.5) ">注文履歴詳細</span>
+    </h4>
 
-       <!--購入者情報-->
-  <div class="row">
-    <div class="col">
-      <table>
-        <thead>
-          <tr>
-            <th><strong>購入者</strong></th>
+      <div class="col-10">
+      <table class="table table-borderless">
+        <tr>
+          <td><strong style="font-weight:bold; color:#A07B35;">購入者</strong></td>
           <td><%= @order.name %></td>
         </tr>
         <tr>
-          <tr>
-            <th><strong>注文日</strong></th>
+          <td><strong style="font-weight:bold; color:#A07B35;">注文日</strong></td>
           <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
         </tr>
         <tr>
-            <th><strong>配送先</strong></th>
-            <td>
-              　〒<%= @order.postal_code %> <%= @order.address %><br>
-              　<%= @order.name %>
-            </td>
-          </tr>
-         <tr>
-            <th><strong>支払方法</strong></th>
-            <td>　<%= I18n.t("enums.order.payment_method.#{@order.payment_method}") %></td>
-          </tr>
+          <td><strong style="font-weight:bold; color:#A07B35;">配送先</strong></td>
+          <td>
+            〒<%= @order.postal_code %>
+            <%= @order.address %><br>
+            <%= @order.name %>
+          </td>
+        </tr>
         <tr>
-            <th><strong>注文ステータス</strong></th>
-            <td>
+          <td><strong style="font-weight:bold; color:#A07B35;">支払方法</strong></td>
+          <td><%= @order.payment_method_i18n %></td>
+        </tr>
+        <tr>
+          <td><strong style="font-weight:bold; color:#A07B35;">注文ステータス</strong></td>
           <td>
             <%= form_with model: @order, url: admin_order_path(@order), method: :patch, local: true do |f| %>
               <!--ステータスの値（整数値）が表示される-->
@@ -42,66 +36,66 @@
 
               <!--ステータスのキー（enumで定義された値）が表示される-->
               <!--.keys.map は、Rubyのハッシュからキーを取り出して配列に変換する処理-->
+<<<<<<< HEAD
               <%= f.select :status, Order.statuses.keys.map { |status| [I18n.t("enums.order.status.#{status}"), status] } %>
                 <%= f.submit "更新",class:"ml-4 btn btn-success" %>
               <% end %>
+=======
+              <span><%= f.select :status, Order.statuses_i18n.invert %></span>
+              <span class="ml-3"><%= f.submit "更新", class: "btn btn-success" %></span>
+            <% end %>
+>>>>>>> origin/develop
           </td>
           </tr>
         </thead>
       </table>
-    </div>
-  </div>
+      </div>
 
-       <div class="row mt-3">
-    <!--注文詳細テーブル-->
-    <div class="col-lg-9 col-sm-12">
-      <table class="table">
-       <thead class="thead-light">
-          <tr>
-            <th>商品名</th>
-            <th>単価（税込）</th>
-            <th>数量</th>
-            <th>小計</th>
-            <th>製作ステータス</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-        <% @order_details.each do |order_detail| %>
-          <tr>
-            <td><%= order_detail.item.name %></td>
-            <td><%= order_detail.price %></td>
-            <td><%= order_detail.amount %></td>
-            <td><%= order_detail.price * order_detail.amount %></td>
-            <td>
-              <%= form_with model: order_detail, url: admin_order_order_detail_path(order_detail), method: :patch, local: true do |f| %>
-                <%= f.select :making_status, OrderDetail.making_statuses_i18n.invert %>
-                <%= f.hidden_field :order_detail_id, :value => order_detail.id %>
-            </td>
-            <td><%= f.submit "更新", class:"btn btn-success x-0" %></td>
-              <% end %>
+      <div class="d-flex">
+        <div class="col-10 d-flex align-items-end">
+          <table class="table border-top">
+            <tr style="background-color: #ccc8c0;">
+              <td><strong style="font-weight:bold; color:#A07B35;">商品名</strong></td>
+              <td><strong style="font-weight:bold; color:#A07B35;">単価(税込)</strong></td>
+              <td><strong style="font-weight:bold; color:#A07B35;">数量</strong></td>
+              <td><strong style="font-weight:bold; color:#A07B35;">小計</strong></td>
+              <td><strong style="font-weight:bold; color:#A07B35;">製作ステータス</strong></td>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-        <div class="col-lg-3 col-10 mt-auto mb-3">
-      <table>
-        <thead>
-          <tr>
-            <th>商品合計</th>
-          <td><%= @order_product_total %>円</td>
-        </tr>
-        <tr>
-          <th>送料</th>
-          <td>800円</td>
-        </tr>
-        <tr>
-          <th>請求金額合計</th>
-          <td><%= @order_product_total + 800 %>円</td>
-        </tr>
-        </thead>
-      </table>
+            <% @order_details.each do |order_detail| %>
+              <tr>
+                <td><%= order_detail.item.name %></td>
+                <td><%= number_with_delimiter(order_detail.price) %></td>
+                <td><%= order_detail.amount %></td>
+                <td><%= number_with_delimiter(order_detail.price * order_detail.amount) %></td>
+                <td>
+                  <%= form_with model: order_detail, url: admin_order_order_detail_path(order_detail), method: :patch, local: true do |f| %>
+                    <span><%= f.select :making_status, OrderDetail.making_statuses_i18n.invert %></span>
+                    <span class="ml-3"><%= f.submit "更新", class: "btn btn-success" %></span>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+
+        <div class="col-10 d-flex align-items-end pb-4">
+          <table>
+            <tr>
+              <td class="pb-2"><strong class = "p-1 pb-2" style="font-weight:bold; color:#A07B35;">商品合計</strong></td>
+              <td class="align-items-center pl-3 pb-2 "><%= number_with_delimiter(@order_product_total) %>円</td>
+            </tr>
+            <tr>
+              <td class="pb-2"><strong class = "p-1 pb-2" style="font-weight:bold; color:#A07B35;">送料</strong></td>
+              <td class="align-items-center pl-3 pb-2">800円</td>
+            </tr>
+            <tr>
+              <td class="pb-2"><strong class = "p-1 pb-2" style="font-weight:bold; color:#A07B35;">請求金額合計</strong></td>
+              <td class="align-items-center pl-3 pb-2"><strong><%= number_with_delimiter(@order_product_total + 800) %>円</strong></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>

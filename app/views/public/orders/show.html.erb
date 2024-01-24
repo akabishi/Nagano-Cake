@@ -1,51 +1,60 @@
 <div class="container p-3">
   <div class="row">
     <div class="col-md-12">
-      <h3>注文履歴詳細</h3>
+      <h4 class = "pl-5 pb-3" style="font-weight:bold; color:#A07B35; font-family:'Times New Roman'; font-size:20px;">
+        <span style="background-color: rgba(204, 200, 192, 0.5)">注文履歴詳細</span>
+      </h4>
 
-      <h4>注文情報</h4>
-      <table class="table">
-        <tr>
-          <td>注文日</td>
-          <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
-        </tr>
-        <tr>
-          <td>配送先</td>
-          <td>
-            〒<%= @order.postal_code %><br>
-            <%= @order.address %><br>
-            <%= @order.name %>
-          </td>
-        </tr>
-        <tr>
-          <td>支払い方法</td>
-          <td><%= @order.payment_method_i18n %></td>
-        </tr>
-        <tr>
-          <td>ステータス</td>
-          <td><%= @order.status_i18n %></td>
-        </tr>
-      </table>
+      <div class="d-flex col-md-12">
+        <div>
+          <div class="pb-2"><strong class = "p-1 pb-2" style="font-weight:bold; color:#A07B35;">注文情報</strong></div>
+          <table class="table border table-bordered">
+            <tr>
+              <td style="background-color: #ccc8c0;">注文日</td>
+              <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+            </tr>
+            <tr>
+              <td style="background-color: #ccc8c0;">配送先</td>
+              <td>
+                〒<%= @order.postal_code %><br>
+                <%= @order.address %><br>
+                <%= @order.name %>
+              </td>
+            </tr>
+            <tr>
+              <td style="background-color: #ccc8c0;">支払い方法</td>
+              <td><%= @order.payment_method_i18n %></td>
+            </tr>
+            <tr>
+              <td style="background-color: #ccc8c0;">ステータス</td>
+              <td><%= @order.status_i18n %></td>
+            </tr>
+          </table>
+        </div>
 
-      <h4>請求情報</h4>
-      <table class="table">
-        <tr>
-          <td>商品合計</td>
-          <td><%= @order.total_price %></td>
-        </tr>
-        <tr>
-          <td>配送料</td>
-          <td><%= @order.shipping_cost %></td>
-        </tr>
-        <tr>
-          <td>ご請求額</td>
-          <td><%= @order.total_price + @order.shipping_cost %></td>
-        </tr>
-      </table>
+        <div class="ml-3">
+          <div class="pb-2"><strong class = "p-1 pb-2" style="font-weight:bold; color:#A07B35;">請求情報</strong></div>
+          <table class="table border table-bordered">
+            <tr>
+              <td style="background-color: #ccc8c0;">商品合計</td>
+              <td><%= number_with_delimiter(@order.total_price) %></td>
+            </tr>
+            <tr>
+              <td style="background-color: #ccc8c0;">配送料</td>
+              <td><%= @order.shipping_cost %></td>
+            </tr>
+            <tr>
+              <td style="background-color: #ccc8c0;">ご請求額</td>
+              <td><%= number_with_delimiter(@order.total_price + @order.shipping_cost) %></td>
+            </tr>
+          </table>
+        </div>
+      </div>
 
-      <h4>注文内容</h4>
-      <table class="table">
-        <tr>
+      <div class="col-md-6">
+      <div class="pb-2"><strong class = "p-1 pb-2" style="font-weight:bold; color:#A07B35;">注文内容</strong></div>
+      <table class="table border table-bordered">
+        <tr style="background-color: #ccc8c0;">
           <td>商品</td>
           <td>単価(税込)</td>
           <td>個数</td>
@@ -54,12 +63,14 @@
         <% @order_details.each do |order_detail| %>
           <tr>
             <td><%= order_detail.item.name %></td>
-            <td><%= order_detail.item.price %></td>
+            <td><%= number_with_delimiter(order_detail.item.price) %></td>
             <td><%= order_detail.amount %></td>
-            <td><%= order_detail.amount * order_detail.item.price %></td>
+            <td><%= number_with_delimiter(order_detail.amount * order_detail.item.price) %></td>
           </tr>
         <% end %>
       </table>
+      </div>
+
     </div>
   </div>
 </div>
