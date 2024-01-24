@@ -1,26 +1,25 @@
-<table class="table table-borderless border-top mt-4">
+<table class="table table-borderless border-top mt-4" style="background-color: #fffaf0;">
   <thead class="bg-light">
     <tr>
-      <th>商品ID</th>
-      <th>商品名</th>
-      <th>税抜価格</th>
-      <th>ジャンル</th>
-      <th>ステータス</th>
-      <th colspan="5"></th>
+      <th style="background-color: #ccc8c0; width: 20%;">商品ID</th>
+      <th style="background-color: #ccc8c0; width: 20%;">商品名</th>
+      <th style="background-color: #ccc8c0; width: 20%;">税抜価格</th>
+      <th style="background-color: #ccc8c0; width: 20%;">ジャンル</th>
+      <th style="background-color: #ccc8c0; width: 20%;">ステータス</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody style="background-color: #fffaf0;">
     <% items.each do |item| %>
     <tr>
       <td><%= item.id %></td>
-      <td><%= link_to item.name, admin_item_path(item.id) %></td>
+      <td style="font-family: serif; font-weight:bold; color:#A07B35;"><%= link_to item.name, admin_item_path(item.id) %></td>
       <td><%= item.price %></td>
-      <td><%= item.genre.name %></td>
+      <td style="font-family: serif; font-weight:bold; color:#A07B35;"><%= item.genre.name %></td>
       <td>
         <% if item.is_active %>
           <p class="text-success"><strong>販売中</strong></p>
         <% else %>
-          <p class="text-muted"><strong>販売停止</strong></p>
+          <p class="text-danger"><strong>販売停止</strong></p>
         <% end %>
       </td>
     </tr>

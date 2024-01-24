@@ -1,31 +1,40 @@
-<div class="container p-3">
+<div class="container">
   <div class="row">
-    <div class="col-md-12">
-      <h4>注文履歴詳細</h4>
+    <div class="col-lg-12 col-md-10">
+      <div class="d-flex justify-content-top mb-3">
+         <h2 class="mb-4" style="font-weight:bold; color:#A07B35; font-family:'Times New Roman'; font-size:45px;"><strong>Order history details</strong></h2>
+      </div>
+    </div>
+  </div>
 
-      <table class="table">
-        <tr>
-          <td>購入者</td>
+       <!--購入者情報-->
+  <div class="row">
+    <div class="col">
+      <table>
+        <thead>
+          <tr>
+            <th><strong>購入者</strong></th>
           <td><%= @order.name %></td>
         </tr>
         <tr>
-          <td>注文日</td>
+          <tr>
+            <th><strong>注文日</strong></th>
           <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
         </tr>
         <tr>
-          <td>配送先</td>
-          <td>
-            <%= @order.postal_code %><br>
-            <%= @order.address %><br>
-            <%= @order.name %>
-          </td>
-        </tr>
+            <th><strong>配送先</strong></th>
+            <td>
+              　〒<%= @order.postal_code %> <%= @order.address %><br>
+              　<%= @order.name %>
+            </td>
+          </tr>
+         <tr>
+            <th><strong>支払方法</strong></th>
+            <td>　<%= I18n.t("enums.order.payment_method.#{@order.payment_method}") %></td>
+          </tr>
         <tr>
-          <td>支払方法</td>
-          <td><%= @order.payment_method_i18n %></td>
-        </tr>
-        <tr>
-          <td>注文ステータス</td>
+            <th><strong>注文ステータス</strong></th>
+            <td>
           <td>
             <%= form_with model: @order, url: admin_order_path(@order), method: :patch, local: true do |f| %>
               <!--ステータスの値（整数値）が表示される-->
@@ -33,21 +42,31 @@
 
               <!--ステータスのキー（enumで定義された値）が表示される-->
               <!--.keys.map は、Rubyのハッシュからキーを取り出して配列に変換する処理-->
-              <%= f.select :status, Order.statuses_i18n.invert %>
-              <%= f.submit "更新", class: "btn btn-success" %>
-            <% end %>
+              <%= f.select :status, Order.statuses.keys.map { |status| [I18n.t("enums.order.status.#{status}"), status] } %>
+                <%= f.submit "更新",class:"ml-4 btn btn-success" %>
+              <% end %>
           </td>
-        </tr>
+          </tr>
+        </thead>
       </table>
+    </div>
+  </div>
 
+       <div class="row mt-3">
+    <!--注文詳細テーブル-->
+    <div class="col-lg-9 col-sm-12">
       <table class="table">
-        <tr>
-          <td>商品名</td>
-          <td>単価(税込)</td>
-          <td>数量</td>
-          <td>小計</td>
-          <td>製作ステータス</td>
-        </tr>
+       <thead class="thead-light">
+          <tr>
+            <th>商品名</th>
+            <th>単価（税込）</th>
+            <th>数量</th>
+            <th>小計</th>
+            <th>製作ステータス</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
         <% @order_details.each do |order_detail| %>
           <tr>
             <td><%= order_detail.item.name %></td>
@@ -57,25 +76,32 @@
             <td>
               <%= form_with model: order_detail, url: admin_order_order_detail_path(order_detail), method: :patch, local: true do |f| %>
                 <%= f.select :making_status, OrderDetail.making_statuses_i18n.invert %>
-                <%= f.submit "更新", class: "btn btn-success" %>
-              <% end %>
+                <%= f.hidden_field :order_detail_id, :value => order_detail.id %>
             </td>
-          </tr>
-        <% end %>
-        <tr>
-          <td>商品合計</td>
+            <td><%= f.submit "更新", class:"btn btn-success x-0" %></td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+        <div class="col-lg-3 col-10 mt-auto mb-3">
+      <table>
+        <thead>
+          <tr>
+            <th>商品合計</th>
           <td><%= @order_product_total %>円</td>
         </tr>
         <tr>
-          <td>送料</td>
+          <th>送料</th>
           <td>800円</td>
         </tr>
         <tr>
-          <td>請求金額合計</td>
+          <th>請求金額合計</th>
           <td><%= @order_product_total + 800 %>円</td>
         </tr>
+        </thead>
       </table>
-
     </div>
   </div>
 </div>
