@@ -2,12 +2,12 @@
   .aspect-ratio-box {
     position: relative;
     width: 100%;
-    padding-bottom: 100%; /* 画像のアスペクト比を4:5にしたい場合は、この値を調整 */
+    padding-bottom: 80%; /* 画像のアスペクト比を4:5にしたい場合は、この値を調整 */
   }
 
   .aspect-ratio-box img {
     position: absolute;
-    top: 0;
+    top: 10px;
     left: 0;
     width: 90%;
     height: 90%;
@@ -17,7 +17,7 @@
 
 <div class="row">
   <% items.each do |item| %>
-    <div class="col-sm-3 mb-2">
+    <div class="col-sm-3">
       <div class="aspect-ratio-box">
         <%= link_to item_path(item.id) do %>
           <%= image_tag item.get_image(250, 300), class: "img-fluid" %>

@@ -5,7 +5,7 @@
         <a class="navbar-brand" href="/" style="font-family:'Times New Roman'; font-size:30px;"><span>NaganoCake</span></a>
       </div>  
       <% if customer_signed_in? %>
-        <p class = "text-white" style="font-family: 'Playfair Display', serif; color: black; margin-top: 20px;">ようこそ<%= current_customer.first_name_kana %>さん！</p>
+        <p class = "text-white" style="font-family: 'Playfair Display', serif; color: black; margin-top: 20px;">Welcome to <%= current_customer.first_name_kana %>！</p>
       <% end %>
       <div class= "collapse navbar-collapse" id="navbarNavDropdown">
       <ul class= "navbar-nav ml-auto">

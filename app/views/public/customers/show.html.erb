@@ -1,12 +1,12 @@
 <div class="container">
   <div class="row">
     <div class="col-10 mx-auto">
-      <h2 class="mb-4" style="font-weight:bold; color:#A07B35; font-family:'Times New Roman'; font-size:45px; "><strong>My Page</strong></h2>
-        <table class="table table-bordered table-condensed", style="background-color: #fffaf0;">
-          <p>
-            <strong class="information-link mr-3">登録情報</strong>
-            <%= link_to " 編集する", edit_information_path, class: "glyphicon glyphicon-pencil btn btn-success btn-sm" %>
-          </p>
+      <h2 class="mb-4" style="font-weight:bold; color:#A07B35; font-family:'Times New Roman'; font-size:45px;"><strong>My Page</strong></h2>
+      <div class="d-flex align-items-center mb-3">
+        <strong class="information-link mr-4">登録情報</strong>
+        <%= link_to "編集する", edit_information_path, class: "btn btn-success btn-sm d-flex align-items-center justify-content-center ml-5", style: "width: 120px; height: 40px; border-radius: 10px;" %>
+      </div>
+      <table class="table table-bordered table-condensed" style="background-color: #fffaf0;">
           <tbody>
           <tr>
             <th style="background-color: #ccc8c0; width: 20%;">氏名</th>
@@ -39,14 +39,14 @@
           </tr>
           </tbody>
         </table>
-        <p>
-            <strong>配送先</strong>
-            <%= link_to " 一覧を見る", addresses_path, class: "btn btn-info btn-sm ml-3" %>
-        </p>
-        <p>
-            <strong>注文履歴  </strong>
-            <%= link_to " 一覧を見る", orders_path, class: "btn btn-info btn-sm" %>
-        </p>
-    <div>
+        <p class="d-flex align-items-center">
+        <strong>配送先</strong>
+        <%= link_to "一覧を見る", addresses_path, class: "btn btn-info btn-sm ml-4", style: "width: 120px; height: 40px; border-radius: 10px; line-height: 29px;" %>
+      </p>
+      <p class="d-flex align-items-center">
+        <strong>注文履歴</strong>
+        <%= link_to "一覧を見る", orders_path, class: "btn btn-info btn-sm ml-2", style: "width: 120px; height: 40px; border-radius: 10px; line-height: 28px;" %>
+      </p>
+    </div>
   </div>
 </div>
