@@ -10,7 +10,7 @@ class Public::AddressesController < ApplicationController
     @address = Address.new(address_params)
     @address.customer_id = current_customer.id
     @address.save
-    redirect_to request.referer
+    @addresses = Address.where(customer_id: current_customer.id)
   end
   
   def edit
@@ -24,9 +24,9 @@ class Public::AddressesController < ApplicationController
   end
   
   def destroy
-    address = Address.find(params[:id])
-    address.destroy
-    redirect_to request.referer
+    @addresses = Address.where(customer_id: current_customer.id)
+    @address = Address.find(params[:id])
+    @address.destroy
   end
   
   private
