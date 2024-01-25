@@ -8,7 +8,7 @@ end
 def create
   @genre = Genre.new(genre_params)
   if @genre.save
-    flash[:notice] = "You have created genre successfully."
+    flash[:notice] = "新規作成に成功しました。"
     redirect_to request.referer
   else
     @genres = Genre.all
