@@ -58,6 +58,7 @@
       <span class="pl-3">〒<%= @order.postal_code + " " + @order.address + " " + @order.name %></span>
     </div>
 
+    <!--@orderモデルの属性に関する情報を含み、その情報は非表示のhiddenフィールドを使用して渡す-->
     <div class="col-md-12 pt-5 d-flex justify-content-center">
       <%= form_with model: @order, url: orders_path, local:true do |f|  %>
         <%= f.hidden_field :customer_id, value: current_customer.id %>

@@ -1,5 +1,7 @@
 class Public::OrdersController < ApplicationController
 
+  before_action :authenticate_customer!
+
   def new
     @order = Order.new
     @addresses = Address.all
@@ -47,6 +49,7 @@ class Public::OrdersController < ApplicationController
     # カート内商品の情報を取得
     @cart_items = current_customer.cart_items.all
 
+    # OrderDetailの各フィールドに値を設定
     @cart_items.each do |cart_item|
       @order_details = OrderDetail.new
       @order_details.order_id = order.id
@@ -54,19 +57,22 @@ class Public::OrdersController < ApplicationController
       @order_details.price = cart_item.item.with_tax_price
       @order_details.amount = cart_item.amount
       @order_details.making_status = 0
+      # データベースに保存
       @order_details.save!
     end
 
     CartItem.destroy_all
     redirect_to thanks_path
+
   end
 
   def index
-    @orders=Order.page(params[:page]).per(10)
+    @orders = Order.page(params[:page]).per(10)
   end
 
   def show
     @order = Order.find(params[:id])
+    # OrderDetailモデルからorder_idが@order.idと一致するレコードを取得
     @order_details= OrderDetail.where(order_id: @order.id)
   end
 
