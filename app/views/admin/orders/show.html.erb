@@ -62,6 +62,9 @@
                 <td><%= order_detail.amount %></td>
                 <td><%= number_with_delimiter(order_detail.price * order_detail.amount) %></td>
                 <td>
+                  <!--引数として order_detail.order.id および order_detail.id を渡しています。これにより、注文詳細の親である注文と、注文詳細それ自体のIDが取得されます。
+                  ルーティングの設定により、これらのIDが埋め込まれ、対応するパスが生成されます。
+                  例えば、もし order_detail.order.id が 1 で order_detail.id が 2 の場合、admin_order_order_detail_path(1, 2) は /admin/orders/1/order_details/2 といったパスを生成することになります。-->
                   <%= form_with model: order_detail, url: admin_order_order_detail_path(order_detail.order.id,order_detail.id), method: :patch, local: true do |f| %>
                     <span><%= f.select :making_status, OrderDetail.making_statuses_i18n.invert %></span>
                     <span class="ml-3"><%= f.submit "更新", class: "btn btn-success" %></span>

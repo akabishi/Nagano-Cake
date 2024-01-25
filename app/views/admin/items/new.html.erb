@@ -52,7 +52,8 @@
           <strong><%= f.label :税抜価格 %></strong>
         </div>
         <div class="col-lg-7">
-          <%= f.text_field :price %>
+          <!--フォームを数字専用に変更-->
+          <%= f.number_field :price, pattern: "[0-9]*" %>
         </div>
       </div>
       <div class="row mt-4">
