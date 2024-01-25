@@ -1,17 +1,15 @@
 <div class="container p-3">
   <div class="row">
-    <h4 class = "pl-5 pb-3" style="font-weight:bold; color:#A07B35; font-family:'Times New Roman'; font-size:20px;">
-      <span style="background-color: rgba(204, 200, 192, 0.5)">注文情報確認</span>
-    </h4>
+    <h2 class="mb-4" style="font-weight:bold; color:#A07B35; font-family:'Times New Roman'; font-size:45px;"><strong>Confirm order information</strong></h2>
     <div class="col-md-12">
-      <table class="table border table-bordered">
+      <table class="table table-bordered table-condensed" style="background-color: #fffaf0;">
         <tr style="background-color: #ccc8c0;">
-          <td >注文日</td>
-          <td>配送先</td>
-          <td>注文商品</td>
-          <td>支払金額</td>
-          <td>ステータス</td>
-          <td>注文詳細</td>
+          <th style="background-color: #ccc8c0;">注文日</th>
+          <th style="background-color: #ccc8c0;">配送先</th>
+          <th style="background-color: #ccc8c0;">注文商品</th>
+          <th style="background-color: #ccc8c0;">支払金額</th>
+          <th style="background-color: #ccc8c0;">ステータス</th>
+          <th style="background-color: #ccc8c0;">注文詳細</th>
         </tr>
         <% @orders.each do |order| %>
           <tr>
