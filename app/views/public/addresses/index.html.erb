@@ -7,35 +7,37 @@
 
       <div class = col-12>
         <%= form_with model: @address, url: addresses_path, method: :post do |f| %>
-          <table = "table">
-          <tr>
-            <td class="form-group pr-5">
-              <%= f.label :postal_code, "郵便番号(ハイフンなし)" %>
-            </td>
-            <td class="form-group pb-2">
-              <%= f.text_field :postal_code, placeholder: "0000000", class: "form-control" %>
-            </td>
-          </tr>
-          <tr>
-            <td class="form-group pr-5">
-              <%= f.label :address, "住所" %>
-            </td>
-            <td class="form-group pb-2" colspan="2" style="width:300px;">
-              <%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0", class: "form-control" %>
-            </td>
-          </tr>
-          <tr>
-            <td class="form-group pr-5">
-              <%= f.label :name, "宛名" %>
-            </td>
-            <td class="form-group pb-2">
-              <%= f.text_field :name, placeholder: "令和道子", class: "form-control" %>
-            </td>
-            <td class="pb-2 pl-5">
-              <%= f.submit "新規登録", class: "btn btn-success ml-5" %>
-            </td>
-          </tr>
-          </table>
+      <table class="table">
+        <tr>
+          <td class="form-group pr-5">
+           <strong><%= f.label :postal_code, "郵便番号(ハイフンなし)" %></strong>
+          </td>
+          <td class="form-group pb-2">
+           <%= f.text_field :postal_code, placeholder: "0000000", class: "form-control" %>
+          </td>
+        </tr>
+        <tr>
+          <td class="form-group pr-5">
+           <strong><%= f.label :address, "住所" %></strong>
+          </td>
+          <td class="form-group pb-2" colspan="2" style="width:300px;">
+           <%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0", class: "form-control" %>
+          </td>
+         </tr>
+         <tr>
+  <td class="form-group pr-5">
+    <%= f.label :name, "<strong>宛名</strong>".html_safe %>
+  </td>
+  <td class="form-group pb-2">
+    <%= f.text_field :name, placeholder: "令和道子", class: "form-control" %>
+  </td>
+  <td class="pb-2 pl-5">
+    <%= f.submit "新規登録", class: "btn btn-success ml-5" %>
+  </td>
+</tr>
+
+</table>
+
         <% end %>
       </div>
 
@@ -44,10 +46,10 @@
           <% unless @addresses.empty? %>
             <thead class="thead-light">
               <tr>
-                <th>郵便番号</th>
-                <th>住所</th>
-                <th>宛名</th>
-                <th class = "width-300"></th>
+                <th style="background-color: #ccc8c0; width: 20%;"><strong style="font-weight:bold;">郵便番号</strong></th>
+                <th style="background-color: #ccc8c0; width: 20%;"><strong style="font-weight:bold;">住所</strong></th>
+                <th style="background-color: #ccc8c0; width: 20%;"><strong style="font-weight:bold;">宛名</strong></th>
+                <th style="background-color: #ccc8c0; width: 20%;"></th>
               </tr>
             </thead>
             <tbody>
