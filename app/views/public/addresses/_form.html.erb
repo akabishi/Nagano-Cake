@@ -1,0 +1,32 @@
+<%= form_with model: address, url: addresses_path, method: :post, local: false do |f| %>
+  <table class="table">
+    <tr>
+      <td class="form-group pr-5">
+       <strong><%= f.label :postal_code, "郵便番号(ハイフンなし)" %></strong>
+      </td>
+      <td class="form-group pb-2">
+        <%= f.text_field :postal_code, placeholder: "0000000", class: "form-control" %>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td class="form-group pr-5">
+        <strong><%= f.label :address, "住所" %></strong>
+      </td>
+      <td class="form-group pb-2" colspan="2" style="width:300px;">
+        <%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0", class: "form-control" %>
+      </td>
+    </tr>
+    <tr>
+      <td class="form-group pr-5">
+        <%= f.label :name, "<strong>宛名</strong>".html_safe %>
+      </td>
+      <td class="form-group pb-2">
+        <%= f.text_field :name, placeholder: "令和道子", class: "form-control" %>
+      </td>
+      <td class="pb-2 pl-5">
+        <%= f.submit "新規登録", class: "btn btn-success ml-5" %>
+      </td>
+    </tr>
+  </table>
+<% end %>
