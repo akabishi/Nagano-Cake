@@ -56,6 +56,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem "enum_help"
-gem 'kaminari'
 gem 'image_processing', '~> 1.2'
 gem 'pry-byebug', group: :development
+gem 'kaminari','~> 1.2.1'
+gem 'bootstrap4-kaminari-views'

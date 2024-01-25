@@ -1,7 +1,7 @@
 <div class = "container">
   <div class = "row">
     <div class = "col mt-3">
-      <h3  class="mb-4" style="font-weight:bold; color:#A07B35; font-family: serif; font-size:30px;"><strong><%= @customer.full_name %></strong> さんの会員情報編集</h3>
+      <h3  class="mb-4" style="font-weight:bold; color:#A07B35; font-family: serif; font-size:30px;">Edit Member Information for Mr.<strong><%= @customer.full_name %></strong> </h3>
       <%= form_with model: @customer, url: admin_customer_path(@customer) do |f| %>
       <table class = "table table-borderless", style="background-color: #fffaf0;">
         <tr>
