@@ -3,14 +3,14 @@
     <div class="col-md-3" style="margin-top: -50px;">
       <div class="row-mt-6">
         <div class="logo-section d-flex justify-content-center ml-2">
-        <a class="navbar-brand " href="/admin" ><span><%= image_tag 'Nagano_Cake__6_-removebg-preview (1).png', size: "350x350" %></span></a>
+        <a class="navbar-brand"><span><%= image_tag 'Nagano_Cake__6_-removebg-preview (1).png', size: "350x350" %></span></a>
       </div>
       </div>
       <div class="row-mt-2">
       <%= render 'public/searches/search_genre', genres: @genres %>
       </div>
     </div>
-    
+
     <div class="col-md-8 offset-md-1">
   <div class="container-fluid" style="background-image: url('<%= asset_path('Pancake Day (1).jpg') %>'); background-size: cover; height: 350px;">
     <div class="row align-items-start justify-content-start" style="height: 100%;">
@@ -24,8 +24,8 @@
       </div>
     </div>
   </div>
-    
-    
+
+
     <div>
       <h4 class="mt-2", style="color:#A07B35; font-family:'Times New Roman';"><strong>・・・ NEW ・・・</strong></h4>
       <div class = "d-flex justify-content-around">
@@ -37,8 +37,10 @@
                 <td class: "align-baseline text-center", style="padding-right: 30px;">
                   <%= link_to item_path(item) , :style => "color: #A07B35;" do%>
                     <%= image_tag item.get_image(140, 140), class: "img-fluid" %><br>
-                    <%= item.name %>
-                  <% end %>
+                    <%= item.name %><br>
+                    <% end %>
+                    <p style="color: #A07B35;">¥ <%= item.with_tax_price.to_s(:delimited) %></p>
+                    
                 </td>
                 <% end %>
               </tr>

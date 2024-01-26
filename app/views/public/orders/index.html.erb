@@ -13,25 +13,25 @@
         </tr>
         <% @orders.each do |order| %>
           <tr>
-            <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
-            <td>
-              <%= order.postal_code %><br>
+            <td class = "align-middle"><%= order.created_at.strftime('%Y/%m/%d') %></td>
+            <td class = "align-middle">
+              〒<%= order.postal_code %><br>
               <%= order.address %><br>
               <%= order.name %>
             </td>
-            <td>
+            <td class = "align-middle">
               <% order.order_details.each do |order_detail|  %>
-                <p><%= order_detail.item.name %></p>
+                <div = "align-middle"><%= order_detail.item.name %></div>
               <% end %>
             </td>
-            <td><%= number_with_delimiter(order.total_price) %>円</td>
-            <td><%= order.status_i18n %></td>
-            <td><%= link_to "表示する", order_path(order.id), class: "btn btn-info"  %></td>
+            <td class = "align-middle"><%= number_with_delimiter(order.total_price) %>円</td>
+            <td class = "align-middle"><%= order.status_i18n %></td>
+            <td class = "text-center align-middle"><%= link_to "表示する", order_path(order.id), class: "btn btn-info"  %></td>
           </tr>
         <% end %>
       </table>
       <div class="d-flex justify-content-center">
-        <%= paginate @orders %>
+        <%= paginate @orders, theme: 'twitter-bootstrap-4' %>
       </div>
     </div>
   </div>

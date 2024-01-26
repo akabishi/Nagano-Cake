@@ -5,44 +5,44 @@
       <%= form_with model: @customer, url: admin_customer_path(@customer) do |f| %>
       <table class = "table table-borderless", style="background-color: #fffaf0;">
         <tr>
-          <th>会員ID</th>
-          <td><%= @customer.id %></td>
+          <th class="align-middle">会員ID</th>
+          <td class="align-middle"><%= @customer.id %></td>
         </tr>
         <tr>
-          <th>氏名</th>
-          <td><%= f.text_field :last_name %>  <%= f.text_field :first_name %></td>
+          <th class="align-middle">氏名</th>
+          <td class="align-middle"><%= f.text_field :last_name %>  　　<%= f.text_field :first_name %></td>
         </tr>
         <tr>
-          <th>フリガナ</th>
-          <td><%= f.text_field :last_name_kana %>  <%= f.text_field :first_name_kana %></td>
+          <th class="align-middle">フリガナ</th>
+          <td class="align-middle"><%= f.text_field :last_name_kana %>  　　<%= f.text_field :first_name_kana %></td>
         </tr>
         <tr>
-          <th>郵便番号</th>
-          <td><%= f.text_field :postal_code %></td>
+          <th class="align-middle">郵便番号</th>
+          <td class="align-middle"><%= f.text_field :postal_code %></td>
         </tr>
         <tr>
-          <th>住所</th>
-          <td><%= f.text_field :address %></td>
+          <th class="align-middle">住所</th>
+          <td class="align-middle" colspan="2"><%= f.text_field :address, style: "width: 500px;" %></td>
         </tr>
         <tr>
-          <th>電話番号</th>
-          <td><%= f.text_field :phone_number %></td>
+          <th class="align-middle">電話番号</th>
+          <td class="align-middle"><%= f.text_field :phone_number %></td>
         </tr>
         <tr>
-          <th>メールアドレス</th>
-          <td><%= f.text_field :email %></td>
+          <th class="align-middle">メールアドレス</th>
+          <td class="align-middle"><%= f.text_field :email %></td>
         </tr>
         <tr>
-          <th>会員ステータス</th>
-          <td>
-            <%= f.radio_button :is_active, "true" %>有効
-            <%= f.radio_button :is_active, "false" %>退会
+          <th class="align-middle">会員ステータス</th>
+          <td class="align-middle">
+            <span><%= f.radio_button :is_active, "true" %>有効</span>
+            <span class="pl-3"><%= f.radio_button :is_active, "false" %>退会</span>
           </td>
         </tr>
         <tr>
           <td></td>
-          <td>
-            <%= f.submit "変更を保存", class: "btn btn-success" %>
+          <td class="pt-5">
+            <%= f.submit "変更を保存", class: "btn btn-lg btn-success", style:"width: 150px" %>
           </td>
         </tr>
       </table>

@@ -7,7 +7,7 @@
         <%= link_to "編集する", edit_information_path, class: "btn btn-success btn-sm d-flex align-items-center justify-content-center ml-5", style: "width: 120px; height: 40px; border-radius: 10px;" %>
       </div>
       <table class="table table-bordered table-condensed" style="background-color: #fffaf0;">
-          <tbody>
+        <tbody>
           <tr>
             <th style="background-color: #ccc8c0; width: 20%;">氏名</th>
             <td><%= current_customer.last_name %>&nbsp;<%= current_customer.first_name %></td>
@@ -37,9 +37,9 @@
             <th style="background-color: #ccc8c0;">メールアドレス</th>
             <td><%= current_customer.email %></td>
           </tr>
-          </tbody>
-        </table>
-        <p class="d-flex align-items-center">
+        </tbody>
+      </table>
+      <p class="d-flex align-items-center">
         <strong>配送先</strong>
         <%= link_to "一覧を見る", addresses_path, class: "btn btn-info btn-sm ml-4", style: "width: 120px; height: 40px; border-radius: 10px; line-height: 29px;" %>
       </p>
@@ -47,6 +47,7 @@
         <strong>注文履歴</strong>
         <%= link_to "一覧を見る", orders_path, class: "btn btn-info btn-sm ml-2", style: "width: 120px; height: 40px; border-radius: 10px; line-height: 28px;" %>
       </p>
+
     </div>
   </div>
 </div>

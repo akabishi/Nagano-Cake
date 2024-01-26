@@ -38,9 +38,14 @@ class Public::SessionsController < Devise::SessionsController
     return unless customer.valid_password?(params[:customer][:password])
     # 【処理内容4】 アクティブでない会員に対する処理
     if customer.is_active
-      return
+      # アクティブな場合は通常のログイン処理を行う
+
+      # ユーザーをサインインさせる
+      sign_in(customer)
+      redirect_to root_path
     else
-      redirect_to customer_session
+      flash[:notice] = "既に退会済みのアカウントです。新規会員登録が必要になります。"
+      redirect_to new_customer_registration_path
     end
   end
 
@@ -51,7 +56,7 @@ class Public::SessionsController < Devise::SessionsController
 
   #ログアウト時の画面遷移先
   def after_sign_out_path_for(resource)
-    new_registration_path(resource_name)
+    new_customer_session_path
   end
 
 end

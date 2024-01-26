@@ -1,4 +1,4 @@
-<table class="table table-borderless border-top mt-4" style="background-color: #fffaf0;">
+<table class="table border-top border-bottom mt-4" style="background-color: #fffaf0;">
   <thead class="bg-light">
     <tr>
       <th style="background-color: #ccc8c0; width: 20%;">会員ID</th>
@@ -10,14 +10,14 @@
   <tbody style="background-color: #fffaf0;">
   <% customers.each do |customer| %>
     <tr>
-      <td><%= customer.id %></td>
-      <td>
-        <%= link_to admin_customer_path(customer) do %>
+      <td class="align-middle"><%= customer.id %></td>
+      <td class="align-middle">
+        <%= link_to admin_customer_path(customer), :style => "color: #A07B35;"  do %>
           <%= customer.full_name %>
         <% end %>
       </td>
-      <td><%= customer.email %></td>
-      <th>
+      <td class="align-middle"><%= customer.email %></td>
+      <th class="align-middle">
         <% if customer.is_active %>
           <span class="text-success">有効</span>
         <% else %>

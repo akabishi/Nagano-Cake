@@ -59,7 +59,7 @@ Rails.application.routes.draw do
     # 顧客
     resources :customers, only: [:index, :show, :edit, :update]
     # 注文詳細画面(ステータス編集を兼ねる)/注文ステータスの更新
-    resources :orders, only: [:show, :update] do
+    resources :orders, only: [:show, :index, :update] do
       # 製作ステータスの更新
     resources :order_details, only: [:update]
       end
