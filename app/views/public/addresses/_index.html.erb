@@ -1,0 +1,25 @@
+<table class = " table table-bordered mt-5">
+  <% unless addresses.empty? %>
+    <thead class="thead-light">
+      <tr>
+        <th style="background-color: #ccc8c0; width: 10%;"><strong style="font-weight:bold;">郵便番号</strong></th>
+        <th style="background-color: #ccc8c0; width: 20%;"><strong style="font-weight:bold;">住所</strong></th>
+        <th style="background-color: #ccc8c0; width: 20%;"><strong style="font-weight:bold;">宛名</strong></th>
+        <th style="background-color: #ccc8c0; width: 20%;"></th>
+      </tr>
+    </thead>
+    <tbody style="background-color: #fffaf0;">
+      <% addresses.each do |address| %>
+        <tr>
+          <td class = "align-middle"><%= address.postal_code %></td>
+          <td class = "align-middle"><%= address.address %></td>
+          <td class = "align-middle"><%= address.name %></td>
+          <td class = "text-center" >
+            <%= link_to "編集する", edit_address_path(address.id), class: "btn btn-success btn-sm mr-3" %>
+            <%= link_to "削除する", address_path(address.id), method: :delete, class: "btn btn-danger btn-sm", remote: true %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% end %>
+</table>
