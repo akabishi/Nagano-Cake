@@ -9,15 +9,13 @@
       </div>
       <table class="table table-bordered table-condensed" style="background-color: #fffaf0;">
         <thead class="thead-light">
-          <thead class="thead-light">
-            <tr>
-              <th style="background-color: #ccc8c0; color: #333;">商品名</th>
-              <th style="background-color: #ccc8c0; color: #333;">単価(税込)</th>
-              <th style="background-color: #ccc8c0; color: #333;">数量</th>
-              <th style="background-color: #ccc8c0; color: #333;">小計</th>
-              <th style="background-color: #ccc8c0; color: #333;"></th>
-            </tr>
-        </thead>
+          <tr>
+            <th style="background-color: #ccc8c0; color: #333;">商品名</th>
+            <th style="background-color: #ccc8c0; color: #333;">単価(税込)</th>
+            <th style="background-color: #ccc8c0; color: #333;">数量</th>
+            <th style="background-color: #ccc8c0; color: #333;">小計</th>
+            <th style="background-color: #ccc8c0; color: #333;"></th>
+          </tr>
         </thead>
         <tbody style="background-color: #fffaf0;">
           <% @cart_items.each do |cart_item| %>
@@ -26,8 +24,8 @@
               <%= image_tag(cart_item.item.get_image(90,80), class: 'm-1') %>
               <%= cart_item.item.name %></td>
 
-            <td="align-middle"><%= cart_item.item.with_tax_price.to_s(:delimited) %></td>
-            <td id="select-form" class="align-middle">
+            <td class="align-middle"><%= cart_item.item.with_tax_price.to_s(:delimited) %></td>
+            <td id="select-form", class="align-middle" >
 
               <!--個数選択のセレクトボックスの作成-->
               <%= form_with model: cart_item, url: cart_item_path(cart_item.id), method: :patch, local:true do |f| %>
@@ -39,10 +37,10 @@
             </td>
             <!--アイテムごとの小計-->
 
-              <td class="subtotal-area">
+              <td class="subtotal-area align-middle">
                 <%= render 'public/cart_items/subtotal', cart_item: cart_item %>
               </td>
-            <td>
+            <td class="align-middle text-center">
               <%= link_to "削除する", cart_item_path(cart_item.id), method: :delete, class: "btn btn-danger", style: "border-radius: 10px;", data: { confirm: "削除しますか？" } %>
             </td>
           </tr>
@@ -76,7 +74,8 @@
         <strong>Cart is Empty</strong>
       <% end %>
     </h3>
-    
+  <% end %>
+
   </div>
 </div>
 
