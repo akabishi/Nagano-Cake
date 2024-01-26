@@ -37,8 +37,10 @@
                 <td class: "align-baseline text-center", style="padding-right: 30px;">
                   <%= link_to item_path(item) , :style => "color: #A07B35;" do%>
                     <%= image_tag item.get_image(140, 140), class: "img-fluid" %><br>
-                    <%= item.name %>
-                  <% end %>
+                    <%= item.name %><br>
+                    <% end %>
+                    <p style="color: #A07B35;">¥ <%= item.with_tax_price.to_s(:delimited) %></p>
+                    
                 </td>
                 <% end %>
               </tr>
