@@ -9,15 +9,12 @@
       </div>
       <table class="table table-bordered table-condensed" style="background-color: #fffaf0;">
         <thead class="thead-light">
-          <thead class="thead-light">
-            <tr>
-              <th style="background-color: #ccc8c0; color: #333;">商品名</th>
-              <th style="background-color: #ccc8c0; color: #333;">単価(税込)</th>
-              <th style="background-color: #ccc8c0; color: #333;">数量</th>
-              <th style="background-color: #ccc8c0; color: #333;">小計</th>
-              <th style="background-color: #ccc8c0; color: #333;"></th>
-            </tr>
-        </thead>
+          <tr>
+            <th style="background-color: #ccc8c0;">商品名</th>
+            <th style="background-color: #ccc8c0;">単価(税込)</th>
+            <th style="background-color: #ccc8c0;">数量</th>
+            <th style="background-color: #ccc8c0;">小計</th>
+          </tr>
         </thead>
         <tbody style="background-color: #fffaf0;">
           <% @cart_items.each do |cart_item| %>
@@ -25,10 +22,8 @@
             <td style="font-family: serif;">
               <%= image_tag(cart_item.item.get_image(90,80), class: 'm-1') %>
               <%= cart_item.item.name %></td>
-
             <td="align-middle"><%= cart_item.item.with_tax_price.to_s(:delimited) %></td>
             <td id="select-form" class="align-middle">
-
               <!--個数選択のセレクトボックスの作成-->
               <%= form_with model: cart_item, url: cart_item_path(cart_item.id), method: :patch, local:true do |f| %>
                 <!--item_idというキーに対してcart_item.item.idという値をブラウザに表示せず送信-->
@@ -38,7 +33,6 @@
               <% end %>
             </td>
             <!--アイテムごとの小計-->
-
               <td class="subtotal-area">
                 <%= render 'public/cart_items/subtotal', cart_item: cart_item %>
               </td>
@@ -69,14 +63,13 @@
         </div>
       </div>
     <% else %>
-
   <div class="col-12 text-center mt-5 mb-5"> <!-- Increase the 'mt' and 'mb' values for more top and bottom margin -->
     <h3 class="mb-4">
       <%= link_to root_path, style:"font-weight:bold; color:#000000; font-family:'Times New Roman'; font-size:70px;" do %>
         <strong>Cart is Empty</strong>
       <% end %>
     </h3>
-    
+    <% end %>
   </div>
 </div>
 
