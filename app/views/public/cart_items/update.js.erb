@@ -1,0 +1,2 @@
+$("#cart_item_<%= @cart_item.id %> .subtotal-area").html("<%= j(render 'public/cart_items/subtotal', cart_item: @cart_item) %>");
+$("#total-area").html("<%= j(render 'public/cart_items/total', total_price: @total_price) %>");

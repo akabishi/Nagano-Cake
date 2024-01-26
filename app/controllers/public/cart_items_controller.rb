@@ -3,7 +3,7 @@ class Public::CartItemsController < ApplicationController
 
   def index
     @cart_items = CartItem.where(customer_id: current_customer.id)
-    @total_price = 0
+    @total_price = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
   end
 
   def create
@@ -39,9 +39,11 @@ class Public::CartItemsController < ApplicationController
   end
 
   def update
-    cart_item = CartItem.find(params[:id])
-    cart_item.update(cart_item_params)
-    redirect_to request.referer
+    @cart_item = CartItem.find(params[:id])
+    @cart_item.update(cart_item_params)
+    @cart_items = current_customer.cart_items.all
+    @total_price = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
+    #redirect_to request.referer
   end
 
   private
