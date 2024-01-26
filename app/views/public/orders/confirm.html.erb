@@ -1,6 +1,6 @@
 <div class="container p-3">
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-8 mx-auto">
       <h2 class="mb-4" style="font-weight:bold; color:#A07B35; font-family:'Times New Roman'; font-size:45px;"><strong>Confirm order information</strong></h2>
 
       <div class="d-flex">
@@ -15,14 +15,15 @@
             <% @cart_items.each do |cart_item| %>
               <tr>
                 <td>
-                  <div class="d-flex align-items-top">
+                  <!--要素を垂直方向で中央に-->
+                  <div class="d-flex align-items-center">
                     <%= image_tag cart_item.item.image, size: "100x80" %>
-                    <p class="ml-3"><%= cart_item.item.name %></p>
+                    <div class="ml-3"><%= cart_item.item.name %></div>
                   </div>
                 </td>
-                <td><%= number_with_delimiter(cart_item.item.price) %></td>
-                <td><%= cart_item.amount %></td>
-                <td><%= number_with_delimiter(cart_item.item.price*cart_item.amount) %></td>
+                <td class="align-middle"><%= number_with_delimiter(cart_item.item.price) %></td>
+                <td class="align-middle"><%= cart_item.amount %></td>
+                <td class="align-middle"><%= number_with_delimiter(cart_item.item.price*cart_item.amount) %></td>
               </tr>
             <% end %>
           </table>

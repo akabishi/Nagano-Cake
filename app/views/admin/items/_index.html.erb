@@ -11,17 +11,17 @@
   <tbody style="background-color: #fffaf0;">
     <% items.each do |item| %>
     <tr>
-      <td><%= item.id %></td>
-      <td style="font-family: serif; font-weight:bold; color:#A07B35;"><%= link_to item.name, admin_item_path(item.id), :style => "color: #A07B35;" %></td>
-      <td><%= item.price %></td>
-      <td style="font-family: serif; font-weight:bold; color:#A07B35;"><%= item.genre.name %></td>
-      <td>
+      <td class="align-middle"><%= item.id %></td>
+      <td class="align-middle" style="font-family: serif; font-weight:bold; color:#A07B35;"><%= link_to item.name, admin_item_path(item.id), :style => "color: #A07B35;" %></td>
+      <td class="align-middle"><%= item.price %></td>
+      <td class="align-middle" style="font-family: serif; font-weight:bold; color:#A07B35;"><%= item.genre.name %></td>
+      <th class="align-middle">
         <% if item.is_active %>
-          <p class="text-success"><strong>販売中</strong></p>
+          <span class="text-success"><strong>販売中</strong></span>
         <% else %>
-          <p class="text-danger"><strong>販売停止</strong></p>
+          <span class="text-danger"><strong>販売停止</strong></span>
         <% end %>
-      </td>
+      </th>
     </tr>
     <% end %>
   </tbody>
