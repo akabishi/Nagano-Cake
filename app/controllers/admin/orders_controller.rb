@@ -17,7 +17,7 @@ class Admin::OrdersController < ApplicationController
   def index
     # 対応する顧客 (Customer) オブジェクトをデータベースから取得し、@customerに代入
     @customer = Customer.find(params[:customer_id])
-    @name = @customer.first_name + @customer.last_name
+    @name = @customer.last_name + @customer.first_name
     # 顧客に紐づいた注文 (@customer.orders) をページネーションを適用して取得し、@ordersに代入
     @orders = @customer.orders.page(params[:page]).per(10)
   end
