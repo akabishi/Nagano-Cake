@@ -69,15 +69,14 @@
         </div>
       </div>
     <% else %>
-
-  <div class="col-12 text-center mt-5 mb-5"> <!-- Increase the 'mt' and 'mb' values for more top and bottom margin -->
-    <h3 class="mb-4">
-      <%= link_to root_path, style:"font-weight:bold; color:#000000; font-family:'Times New Roman'; font-size:70px;" do %>
-        <strong>Cart is Empty</strong>
-      <% end %>
-    </h3>
-    
-  </div>
+<div class="col-12 text-center mt-5 mb-5">
+  <h3 class="mb-4">
+    <%= link_to root_path, style: "font-weight:bold; color:#000000; font-family:'Times New Roman'; font-size:70px;" do %>
+      <strong>Cart is Empty</strong>
+    <% end %>
+  </h3>
+</div>
+<% end %>
 </div>
 
 <!--下記は変更ボタンを押さなくてもselectで個数を選択すると自動で更新が発火されるコードです-->
