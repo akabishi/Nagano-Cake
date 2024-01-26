@@ -23,7 +23,7 @@
           <strong><%= f.label :商品名 %></strong>
         </div>
         <div class="col-lg-7">
-          <%= f.text_field :name %>
+          <%= f.text_field :name, placeholder: "商品名" %>
         </div>
       </div>
 
@@ -33,7 +33,7 @@
           <strong><%= f.label :商品説明 %></strong>
         </div>
         <div class="col-lg-7">
-          <%= f.text_area :introduction, size: "30x5" %>
+          <%= f.text_area :introduction, placeholder: "ここに説明文を記述します", size: "30x5" %>
         </div>
       </div>
 
@@ -53,7 +53,7 @@
         </div>
         <div class="col-lg-7">
           <!--フォームを数字専用に変更-->
-          <%= f.number_field :price, pattern: "[0-9]*" %>
+          <%= f.number_field :price, placeholder: "1000", pattern: "[0-9]*" %>円
         </div>
       </div>
       <div class="row mt-4">
@@ -62,8 +62,8 @@
           <strong><%= f.label :販売ステータス %></strong>
         </div>
         <div class="col-lg-7">
-          <%= f.radio_button :is_active, "true" %>販売中
-          <%= f.radio_button :is_active, "false" %>販売停止中
+          <span><%= f.radio_button :is_active, "true" %>販売中</span>
+          <span class="pl-3"><%= f.radio_button :is_active, "false" %>販売停止中</span>
         </div>
       </div>
 

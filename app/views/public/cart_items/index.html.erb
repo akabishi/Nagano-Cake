@@ -4,7 +4,7 @@
       <h2 class="mb-4" style="font-weight:bold; color:#A07B35; font-family:'Times New Roman'; font-size:45px; "><strong>Shopping Cart</strong></h2>
     </div>
     <% unless @cart_items.empty? %>
-      <div class="col-2 offset-md-5 mt-5 mb-4">
+      <div class="col-2 offset-md-5 mt-5 mb-4 text-right">
         <%= link_to "カートを空にする", cart_items_destroy_all_path, method: :delete, class: "btn btn-danger", style: "border-radius: 10px; white-space: nowrap;", data: { confirm: "本当に空にしますか？" } %>
 
       </div>
@@ -26,8 +26,8 @@
             <td style="font-family: serif;">
               <%= image_tag(cart_item.item.get_image(90,80), class: 'm-1') %>
               <%= cart_item.item.name %></td>
-            <td><%= cart_item.item.with_tax_price.to_s(:delimited) %></td>
-            <td>
+            <td class="align-middle"><%= cart_item.item.with_tax_price.to_s(:delimited) %></td>
+            <td class="align-middle">
               <!--個数選択のセレクトボックスの作成-->
               <%= form_with model: cart_item, url: cart_item_path(cart_item.id), local:true do |f| %>
                 <!--item_idというキーに対してcart_item.item.idという値をブラウザに表示せず送信-->
@@ -38,10 +38,10 @@
               <% end %>
             </td>
             <!--アイテムごとの小計-->
-            <td><%= cart_item.subtotal.to_s(:delimited) %>円</td>
+            <td class="align-middle"><%= cart_item.subtotal.to_s(:delimited) %>円</td>
             <!--合計金額。eaach内繰り返し処理で加算する必要がある-->
             <%  @total_price += cart_item.subtotal %>
-            <td>
+            <td class="align-middle text-center">
               <%= link_to "削除する", cart_item_path(cart_item.id), method: :delete, class: "btn btn-danger", style: "border-radius: 10px;", data: { confirm: "削除しますか？" } %>
             </td>
           </tr>
@@ -73,7 +73,11 @@
 
     <% else %>
   <div class="col-12 text-center mt-5 mb-5"> <!-- Increase the 'mt' and 'mb' values for more top and bottom margin -->
-    <h3 class="mb-4" style="font-weight:bold; color:#000000; font-family:'Times New Roman'; font-size:70px; "><strong>Cart is Empty</strong></h3>
+    <h3 class="mb-4">
+      <%= link_to root_path, style:"font-weight:bold; color:#000000; font-family:'Times New Roman'; font-size:70px;" do %>
+        <strong>Cart is Empty</strong>
+      <% end %>
+    </h3>
   </div>
 <% end %>
 

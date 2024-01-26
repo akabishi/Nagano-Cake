@@ -1,16 +1,19 @@
 <div class="container">
-<div class="row justify-content-center">
+  <div class="row justify-content-center">
     <div class="col-lg-10">
       <div class="row">
         <div class="col-lg-8">
           <h2 class="mb-4" style="font-weight:bold; color:#A07B35; font-family:'Times New Roman'; font-size:45px;"><strong>Customers</strong></h2>
         </div>
-        </div>
-        <div class="row">
-        <div class="col-lg-12">
-      <%= render "admin/customers/index", customers: @customers %>
-       </div>
       </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <%= render "admin/customers/index", customers: @customers %>
+         </div>
+      </div>
+    </div>
   </div>
-</div>
+  <div class = "row justify-content-center" >
+    <%= paginate @customers, theme: 'twitter-bootstrap-4' %>
+  </div>
 </div>

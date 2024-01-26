@@ -50,7 +50,7 @@
 
       <div class="d-flex">
         <div class="col-10 d-flex align-items-end">
-          <table class="table table-bordered table-condensed" style="background-color: #fffaf0;">
+          <table class="table border-top border-bottom table-condensed" style="background-color: #fffaf0;">
             <tr style="background-color: #ccc8c0;">
               <td><strong style="font-weight:bold;">商品名</strong></td>
               <td><strong style="font-weight:bold;">単価(税込)</strong></td>
@@ -60,17 +60,17 @@
             </tr>
             <% @order_details.each do |order_detail| %>
               <tr>
-                <td><%= order_detail.item.name %></td>
-                <td><%= number_with_delimiter(order_detail.price) %></td>
-                <td><%= order_detail.amount %></td>
-                <td><%= number_with_delimiter(order_detail.price * order_detail.amount) %></td>
+                <td class="align-middle"><%= order_detail.item.name %></td>
+                <td class="align-middle"><%= number_with_delimiter(order_detail.price) %></td>
+                <td class="align-middle"><%= order_detail.amount %></td>
+                <td class="align-middle"><%= number_with_delimiter(order_detail.price * order_detail.amount) %></td>
                 <td>
                   <!--引数として order_detail.order.id および order_detail.id を渡しています。これにより、注文詳細の親である注文と、注文詳細それ自体のIDが取得されます。
                   ルーティングの設定により、これらのIDが埋め込まれ、対応するパスが生成されます。
                   例えば、もし order_detail.order.id が 1 で order_detail.id が 2 の場合、admin_order_order_detail_path(1, 2) は /admin/orders/1/order_details/2 といったパスを生成することになります。-->
                   <%= form_with model: order_detail, url: admin_order_order_detail_path(order_detail.order.id,order_detail.id), method: :patch, local: true do |f| %>
                     <span><%= f.select :making_status, OrderDetail.making_statuses_i18n.invert %></span>
-                    <span class="ml-3"><%= f.submit "更新", class: "btn btn-success" %></span>
+                    <span class="ml-3 align-center"><%= f.submit "更新", class: "btn btn-success" %></span>
                   <% end %>
                 </td>
               </tr>
@@ -78,7 +78,7 @@
           </table>
         </div>
 
-        <div class="col-10 d-flex align-items-end pb-4">
+        <div class="col-10 d-flex align-items-end pb-2">
           <table>
             <tr>
               <td class="pb-2"><strong class = "p-1 pb-2" style="font-weight:bold; color:#A07B35;">商品合計</strong></td>
