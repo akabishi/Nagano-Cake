@@ -4,7 +4,9 @@
 
       <div class="row">
         <div class="col-lg-8">
-          <h2 class="mb-4" style="font-weight:bold; color:#A07B35; font-family:'Times New Roman'; font-size:45px;"><strong>Order history</strong></h2>
+          <h2 class="mb-4" style="font-weight:bold; color:#A07B35; font-family:'Times New Roman'; font-size:45px;">
+            <strong><%= @name %>さんの注文履歴</strong>
+          </h2>
         </div>
       </div>
 
@@ -14,7 +16,6 @@
             <thead class="bg-light">
               <tr>
                 <th style="background-color: #ccc8c0; width: 20%;">購入日時</th>
-                <th style="background-color: #ccc8c0; width: 20%;">購入者</th>
                 <th style="background-color: #ccc8c0; width: 20%;">注文個数</th>
                 <th style="background-color: #ccc8c0; width: 20%;">注文ステータス</th>
               </tr>
@@ -23,19 +24,11 @@
               <% @orders.each do |order| %>
               <tr>
                 <td>
-                  <!--顧客の詳細画面-->
                   <%= link_to admin_order_path(order), :style => "color: #A07B35;" do %>
                     <%= order.created_at.strftime("%Y/%m/%d %H:%M:%S") %>
                   <% end %>
                 </td>
                 <td>
-                  <!--顧客ごとの注文履歴一覧-->
-                  <%= link_to admin_orders_path(customer_id: order.customer.id), style: "color: #A07B35;" do %>
-                    <%= order.name %>
-                  <% end %>
-                </td>
-                <td>
-                  <!--order_details内の各order_detailのamountが合計される-->
                   <% total_amount = order.order_details.sum{|item| item.amount} %>
                   <%= total_amount %>
                 </td>
