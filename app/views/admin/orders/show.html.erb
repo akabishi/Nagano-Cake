@@ -6,43 +6,46 @@
     </h4>
 
       <div class="col-10">
-      <table class="table table-borderless">
-        <tr>
-          <td><strong style="font-weight:bold;">購入者</strong></td>
-          <td><%= @order.name %></td>
-        </tr>
-        <tr>
-          <td><strong style="font-weight:bold;">注文日</strong></td>
-          <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
-        </tr>
-        <tr>
-          <td><strong style="font-weight:bold;">配送先</strong></td>
-          <td>
-            〒<%= @order.postal_code %>
-            <%= @order.address %><br>
-            <%= @order.name %>
-          </td>
-        </tr>
-        <tr>
-          <td><strong style="font-weight:bold;">支払方法</strong></td>
-          <td><%= @order.payment_method_i18n %></td>
-        </tr>
-        <tr>
-          <td><strong style="font-weight:bold;">注文ステータス</strong></td>
-          <td>
-            <%= form_with model: @order, url: admin_order_path(@order), method: :patch, local: true do |f| %>
-              <!--ステータスの値（整数値）が表示される-->
-              <%#= f.select :status, Order.statuses_i18n.keys.map %>
-
-              <!--ステータスのキー（enumで定義された値）が表示される-->
-              <!--.keys.map は、Rubyのハッシュからキーを取り出して配列に変換する処理-->
-              <%= f.select :status, Order.statuses.keys.map { |status| [I18n.t("enums.order.status.#{status}"), status] } %>
-                <%= f.submit "更新",class:"ml-4 btn btn-success" %>
+        <table class="table table-borderless">
+          <tr>
+            <td><strong style="font-weight:bold;">購入者</strong></td>
+            <td>
+              <%= link_to admin_customer_path(@order), :style => "color: #A07B35;" do %>
+                <%= @order.name %>
               <% end %>
-          </td>
+            </td>
           </tr>
-        </thead>
-      </table>
+          <tr>
+            <td><strong style="font-weight:bold;">注文日</strong></td>
+            <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+          </tr>
+          <tr>
+            <td><strong style="font-weight:bold;">配送先</strong></td>
+            <td>
+              〒<%= @order.postal_code %>
+              <%= @order.address %><br>
+              <%= @order.name %>
+            </td>
+          </tr>
+          <tr>
+            <td><strong style="font-weight:bold;">支払方法</strong></td>
+            <td><%= @order.payment_method_i18n %></td>
+          </tr>
+          <tr>
+            <td><strong style="font-weight:bold;">注文ステータス</strong></td>
+            <td>
+              <%= form_with model: @order, url: admin_order_path(@order), method: :patch, local: true do |f| %>
+                <!--ステータスの値（整数値）が表示される-->
+                <%#= f.select :status, Order.statuses_i18n.keys.map %>
+
+                <!--ステータスのキー（enumで定義された値）が表示される-->
+                <!--.keys.map は、Rubyのハッシュからキーを取り出して配列に変換する処理-->
+                <%= f.select :status, Order.statuses.keys.map { |status| [I18n.t("enums.order.status.#{status}"), status] } %>
+                  <%= f.submit "更新",class:"ml-4 btn btn-success" %>
+                <% end %>
+            </td>
+          </tr>
+        </table>
       </div>
 
       <div class="d-flex">
@@ -79,15 +82,15 @@
           <table>
             <tr>
               <td class="pb-2"><strong class = "p-1 pb-2" style="font-weight:bold; color:#A07B35;">商品合計</strong></td>
-              <td class="align-items-center pl-3 pb-2 "><%= number_with_delimiter(@order_product_total) %>円</td>
+              <td class="text-right align-items-center pl-3 pb-2 "><%= number_with_delimiter(@order_product_total) %>円</td>
             </tr>
             <tr>
               <td class="pb-2"><strong class = "p-1 pb-2" style="font-weight:bold; color:#A07B35;">送料</strong></td>
-              <td class="align-items-center pl-3 pb-2">800円</td>
+              <td class="text-right align-items-center pl-3 pb-2">800円</td>
             </tr>
             <tr>
               <td class="pb-2"><strong class = "p-1 pb-2" style="font-weight:bold; color:#A07B35;">請求金額合計</strong></td>
-              <td class="align-items-center pl-3 pb-2"><strong><%= number_with_delimiter(@order_product_total + 800) %>円</strong></td>
+              <td class="text-right align-items-center pl-3 pb-2"><strong><%= number_with_delimiter(@order_product_total + 800) %>円</strong></td>
             </tr>
           </table>
         </div>
