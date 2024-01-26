@@ -1,15 +1,13 @@
 <div class = "container">
   <div class = "row">
     <div class = "col-8">
-      <h4 class = "pl-5 pb-3" style="font-weight:bold; color:#A07B35; font-family:'Times New Roman'; font-size:20px;">
-        <span style="background-color: rgba(204, 200, 192, 0.5)">配送先編集</span>
-      </h4>
+      <h2 class="mb-4" style="font-weight:bold; color:#A07B35; font-family:'Times New Roman'; font-size:45px;"><strong>Order information details</strong></h2>
 
       <%= form_with model: @address, url: address_path(@address), method: :patch do |f| %>
         <table class = "table-borderless">
           <tr>
             <td class="form-group align-middle pr-5">
-              <%= f.label :postal_code, "郵便番号(ハイフンなし)" %>
+              <strong><%= f.label :postal_code, "郵便番号(ハイフンなし)" %></strong>
             </td>
             <td class="form-group pb-2">
               <%= f.text_field :postal_code, class: "form-control" %>
@@ -17,7 +15,7 @@
           </tr>
           <tr>
             <td class="form-group align-middle pr-5">
-              <%= f.label :address, "住所" %>
+              <strong><%= f.label :address, "住所" %></strong>
             </td>
             <td class="form-group pb-2" colspan="2" style="max-width: 300px;">
               <%= f.text_field :address, class: "form-control" %>
@@ -25,7 +23,7 @@
           </tr>
           <tr>
             <td class="form-group align-middle pr-5">
-              <%= f.label :name, "宛名" %>
+              <strong><%= f.label :name, "宛名" %></strong>
             </td>
             <td class="form-group pb-2">
               <%= f.text_field :name, class: "form-control" %>

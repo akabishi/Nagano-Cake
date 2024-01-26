@@ -14,7 +14,7 @@ class Public::CartItemsController < ApplicationController
       cart_item.amount += params[:cart_item][:amount].to_i
       cart_item.save
       redirect_to cart_items_path
-    elsif 
+    elsif
       @cart_item.amount == nil
       redirect_to request.referer
     elsif
